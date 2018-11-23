@@ -21,7 +21,9 @@ public class Sounds{
         // specify the sound to play
         // (assuming the sound can be played by the audio system)
         // from a wave File
-       
+   /*disabled
+    *     
+    *
         type = t;
        try {
             //File file = new File(fileName);
@@ -88,7 +90,7 @@ public class Sounds{
         }
 
     // play, stop, loop the sound clip
-    
+    */
     
     }
     public void play(int t){
@@ -96,7 +98,9 @@ public class Sounds{
         storage[t].start();
     }
     public void loop(int t){
+    	/*disabled
         storage[t].loop(Clip.LOOP_CONTINUOUSLY);
+        */
     }
     public void stop(int t){
             storage[t].stop();
@@ -111,16 +115,17 @@ public class Sounds{
     
         
      public  static void enterStart() {
-      
+      /*disabled
      Playlist.startButton("/sounds/Enter.wav");
      Playlist.closeButton(Playlist.ind);
+     */
 }
 
     
 public  static void cancelStart() {
-
+/*disabled
   Playlist.startButton("/sounds/Cancel.wav");
-  Playlist.closeButton(Playlist.ind);
+  Playlist.closeButton(Playlist.ind);*/
 }
 
     
@@ -128,8 +133,9 @@ public  static void cancelStart() {
     
  public static void cursorStart()
  {
+	 /*
 	// Playlist.startButton("/sounds/Cursor.wav");
-   Playlist.playCursor();
+   Playlist.playCursor();*/
 }
     
     

@@ -8,7 +8,7 @@ public class Playlist
   public static int ind = 0,cVal = 0;
   public static void playSong(String n)
   {
-	  
+	  /*disabled
       if(songBank[0] != null)
       {
           songBank[0].stop(0);
@@ -27,12 +27,13 @@ public class Playlist
           songBank[0].play(0);
           songBank[0].loop(0);
         }
-        
+     */   
     }
   
    public static void playEffect(String n)
   {
-      
+      /*disabled
+       * 
       if(songBank[1] != null)
       {
           songBank[1].stop(1);
@@ -49,11 +50,12 @@ public class Playlist
           songBank[1] = chose;
           songBank[1].play(1);
         }
-        
+        */
     }
     
   public static void startButton(String n)
   {
+	  /*diabled
 	  
       boolean done = false;
       for(int i = 0;i<20;i++)
@@ -79,12 +81,12 @@ public class Playlist
             done = true;
             }
       }
-      
+      */
     }
   
     public static void closeButton(int t)
     {
-    	
+    	/*disabled
         for(int i = 0;i<t;i++)
             {
                buttonBank[i] = null;
@@ -93,29 +95,31 @@ public class Playlist
             Sounds.button[i].stop();
             Main.Story.pause(100);
             Sounds.button[i].close();
-        }
+        }*/
     }
     
     public static void playCursor() {
+    	/*diabled
     	cursorBank[cVal].clip.setFramePosition(0);
     	cursorBank[cVal].clip.start();
     	cVal++;
-    	cVal %= 19;
+    	cVal %= 19;*/
     }
     
     public static void init() {
+    	/*diabled
     	for(int i = 0;i<cursorBank.length;i++) {
     		cursorBank[i] = new Sounds("/sounds/Cursor.wav",5);
     		cursorBank[i].clip.setFramePosition(cursorBank[i].clip.getFrameLength());
     		cursorBank[i].clip.start();
-    	}
+    	}*/
     }
     
   public static void stopSong() {
-	  
+	  /*disabled
       Sounds.storage[0].stop();
       Sounds.storage[0].close();
-      
+      */
     }
     
 }
