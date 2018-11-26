@@ -73,6 +73,7 @@ public class Player
     public static int shockRDmg;
     public static int shockRRound;
     
+    
     private static int iceWDuration;
     public static boolean iceWActive;
     public static int iceWDmg;

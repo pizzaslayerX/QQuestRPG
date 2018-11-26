@@ -10,46 +10,87 @@ public class Monster
 	}
 	
 	public int id;
+	public  int damage;
     private  int fireDuration;
     public  boolean burnActive;
-    private  int fireDmg;
-    private  int burnRound;
-    private  int poisonDuration;
-    public  boolean poisonActive;
-    private  int poisonDmg;
-    public  int poisonTotal = 0;
+    public  int fireDmg;
+    public  int burnRound;
     private  int iceDuration;
     public  boolean iceActive;
-    private  int iceDmg;
-    private  int iceRound;
+    public  int iceDmg;
+    public  int iceRound;
     private  int shockDuration;
     public  boolean shockActive;
     public  int shockDmg;
     public  int shockRound;
+    private  int poisonDuration;
+    public  boolean poisonActive;
+    private  int poisonDmg;
+    public  int poisonTotal = 0;
     public  int silenceRound;
     public  boolean silenceActive;
     public  int silenceDuration;
+    public  int disableRound;
+    public  boolean disableActive;
+    public  int disableDuration;
     public  int stunDuration;
     public  int stunRound;
     public  boolean stunActive;
     public  int fortifyDuration;
     public  int fortifyRound;
-    public  boolean fortifyActive;
+    public  boolean fortifyActive; 
     public  int fortifyAmount;
-    public  boolean armorActive = false;
-    public  boolean healActive;
-    public  int healAmount;
-    public  int healDuration;
-    public  int healRound;
+    public  int fragileDuration;
+    public  int fragileRound;
+    public  boolean fragileActive; 
+    public  int fragileAmount;
     public  boolean strengthActive;
     public  int strengthDuration;
     public  int strengthRound;
     public  int strengthAmount;
+    public  boolean weakActive;
+    public  int weakDuration;
+    public  int weakRound;
+    public  int weakAmount; 
+    public  boolean healActive;
+    public  int healAmount;
+    public  int healDuration;
+    public  int healRound;
     public  boolean weaponActive = false;
-    public static boolean weakActive;
-    public static int weakDuration;
-    public static int weakRound;
-    public static int weakAmount; 
+    public  boolean armorActive = false;
+    public  int transformDuration;
+    public  int transformRound;
+    public  boolean transformActive;
+    public  int pDef;
+    public  String pDefName;
+    public  String pDefDesc;
+    public  int pMaxHealth;
+    private  int iceRDuration;
+    public  boolean iceRActive;
+    public  int iceRDmg;
+    public  int iceRRound;
+    private  int fireRDuration;
+    public  boolean fireRActive;
+    public  int fireRDmg;
+    public  int fireRRound;
+    private  int shockRDuration;
+    public  boolean shockRActive;
+    public  int shockRDmg;
+    public  int shockRRound;
+    
+    
+    private  int iceWDuration;
+    public  boolean iceWActive;
+    public  int iceWDmg;
+    public  int iceWRound;
+    private  int fireWDuration;
+    public  boolean fireWActive;
+    public  int fireWDmg;
+    public  int fireWRound;
+    private  int shockWDuration;
+    public  boolean shockWActive;
+    public  int shockWDmg;
+    public  int shockWRound;
     
     private static final Color PUKE_GREEN = new Color(37,148,33);
     private static final Color FIRE_RED = new Color(255,0,0);
@@ -97,8 +138,36 @@ public class Monster
         shockRound = Run.RPGRunner.round;
         }
     }
+    public void startBurnResist(int d,int dmg)
+    {
+    	 MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\nFire",FIRE_RED,20,true);
+         MainFightPanel.append(MainFightPanel.enemyStatOutput," resistance increased");
+         MainFightPanel.append(MainFightPanel.enemyStatOutput,"!\n");
+        Story.pause(1500);
+        Monsters.MonsterManager.enemies.get(id).setFireR(Monsters.MonsterManager.enemies.get(id).getFireR() + dmg);
+        
+        fireRDuration = d;
+        fireRDmg += dmg;
+        fireRRound = Run.RPGRunner.round;
+        fireRActive = true;
+        
+    }
+    public void startIceResist(int d,int dmg)
+    {  
+       MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\nIce",LIGHT_BLUE,20,true);
+       MainFightPanel.append(MainFightPanel.enemyStatOutput," resistance increased");
+       MainFightPanel.append(MainFightPanel.enemyStatOutput,"!\n");
+       Monsters.MonsterManager.enemies.get(id).setIceR(Monsters.MonsterManager.enemies.get(id).getIceR() + dmg);
+        Story.pause(1500);
+        
+        iceRDuration = d;
+        iceRDmg += dmg;
+        iceRRound = Run.RPGRunner.round;
+        iceRActive = true;
+        
+    }
     public  void startPoison(int d,int dmg)
-    {;
+    {
         MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+Monsters.MonsterManager.enemies.get(id).getName() + " has been ");
         MainFightPanel.append(MainFightPanel.enemyStatOutput,"Poisoned",PUKE_GREEN,20,true);
         MainFightPanel.append(MainFightPanel.enemyStatOutput,"!\n");
