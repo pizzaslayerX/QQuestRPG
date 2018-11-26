@@ -166,6 +166,95 @@ public class Monster
         iceRActive = true;
         
     }
+    public void startShockResist(int d,int dmg)
+    {
+    	 MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\nShock",Color.YELLOW,20,true);
+         MainFightPanel.append(MainFightPanel.enemyStatOutput," resistance increased");
+         MainFightPanel.append(MainFightPanel.enemyStatOutput,"!\n");
+         Main.Player.baseShockR += dmg;
+        Story.pause(1500);
+        Monsters.MonsterManager.enemies.get(id).setShockR(Monsters.MonsterManager.enemies.get(id).getShockR() + dmg);
+        shockRDuration = d;
+        shockRDmg += dmg;
+        shockRRound = Run.RPGRunner.round;
+        shockRActive = true;
+        
+    }
+    public  void startShockWeak(int d,int dmg)
+    {
+    	 MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\nShock",Color.YELLOW,20,true);
+         MainFightPanel.append(MainFightPanel.enemyStatOutput," resistance decreased");
+         MainFightPanel.append(MainFightPanel.enemyStatOutput,"!\n");
+         Monsters.MonsterManager.enemies.get(id).setShockR(Monsters.MonsterManager.enemies.get(id).getShockR() - dmg);
+        Story.pause(1500);
+        
+        shockWDuration = d;
+        shockWDmg -= dmg;
+        shockWRound = Run.RPGRunner.round;
+        shockWActive = true;
+        
+    }
+    
+    public  void startBurnWeak(int d,int dmg)
+    {
+    	 MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\nFire",FIRE_RED,20,true);
+         MainFightPanel.append(MainFightPanel.enemyStatOutput," resistance decreased");
+         MainFightPanel.append(MainFightPanel.enemyStatOutput,"!\n");
+        Story.pause(1500);
+        Monsters.MonsterManager.enemies.get(id).setFireR(Monsters.MonsterManager.enemies.get(id).getFireR() - dmg);
+        
+        fireWDuration = d;
+        fireWDmg -= dmg;
+        fireWRound = Run.RPGRunner.round;
+        fireWActive = true;
+        
+    }
+    public  void startIceWeak(int d,int dmg)
+    {  
+       MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\nIce",LIGHT_BLUE,20,true);
+       MainFightPanel.append(MainFightPanel.enemyStatOutput," resistance decreased");
+       MainFightPanel.append(MainFightPanel.enemyStatOutput,"!\n");
+       Monsters.MonsterManager.enemies.get(id).setIceR(Monsters.MonsterManager.enemies.get(id).getIceR() - dmg);
+        Story.pause(1500);
+        
+        iceWDuration = d;
+        iceWDmg -= dmg;
+        iceWRound = Run.RPGRunner.round;
+        iceWActive = true;
+        
+    }
+    public void startFragility(int d, int dmg)
+    {
+    	
+    	MainFightPanel.append(MainFightPanel.user,"\n\n" + Monsters.MonsterManager.enemies.get(id).getName());
+       MainFightPanel.append(MainFightPanel.user," defense has been lowered");
+        Story.pause(1500);
+        fragileDuration = d;
+        fragileRound = Run.RPGRunner.round;
+        fragileAmount -= dmg;
+        fragileActive = true;
+        Monsters.MonsterManager.enemies.get(id).setDef(Monsters.MonsterManager.enemies.get(id).getDef() - dmg);
+
+
+    
+    }
+    public void startWeak(int d, int dmg)
+    {
+    	
+    	MainFightPanel.append(MainFightPanel.user,"\n\n" + Monsters.MonsterManager.enemies.get(id).getName() + " has become ");
+         MainFightPanel.append(MainFightPanel.user,"weaker",Color.LIGHT_GRAY,22,true);
+         MainFightPanel.append(MainFightPanel.user,"!\n");
+        Story.pause(1500);
+        Monsters.MonsterManager.enemies.get(id).setAttack(Monsters.MonsterManager.enemies.get(id).getAttack() - dmg);
+
+        weaponActive = true;
+        weakDuration = d;
+        weakRound = Run.RPGRunner.round;
+        weakAmount -= dmg;
+        weakActive = true;
+    	
+        
+    }
     public  void startPoison(int d,int dmg)
     {
         MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+Monsters.MonsterManager.enemies.get(id).getName() + " has been ");
@@ -320,6 +409,19 @@ public class Monster
              strengthActive = false;
              strengthAmount =0;
         }
+    	 if(weakActive == true)
+         {
+             if(!(r <= weakRound + weakDuration))
+             {
+             	Monsters.MonsterManager.enemies.get(id).setAttack(Monsters.MonsterManager.enemies.get(id).getAttack() - weakAmount);     
+                MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+Monsters.MonsterManager.enemies.get(id).getName());
+             	MainFightPanel.append(MainFightPanel.enemyStatOutput,"'s weakness has worn off.");
+              pause(2500);
+              MainFightPanel.clearDisplay();
+              weakActive = false;
+              weakAmount = 0;
+             }
+         }
         if(fortifyActive == true)
         {
             if(!(r <= fortifyRound + fortifyDuration))
@@ -342,6 +444,19 @@ public class Monster
              armorActive = false;
              fortifyActive = false;
              fortifyAmount = 0;
+        }
+        if(fragileActive == true)
+        {
+            if(!(r <= fragileRound + fragileDuration))
+            {
+            	Monsters.MonsterManager.enemies.get(id).setDef(Monsters.MonsterManager.enemies.get(id).getDef() - fragileAmount);
+                MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+Monsters.MonsterManager.enemies.get(id).getName());
+            	MainFightPanel.append(MainFightPanel.enemyStatOutput,"'s defense has been repaired!");
+             pause(2500);
+             MainFightPanel.clearDisplay();
+             fragileActive = false;
+             fragileAmount = 0;
+            }
         }
         if(burnActive == true)
         {
