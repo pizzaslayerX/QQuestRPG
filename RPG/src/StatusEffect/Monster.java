@@ -458,6 +458,79 @@ public class Monster
              fragileAmount = 0;
             }
         }
+        if(fireRActive == true)
+        {
+            if(!(r <= fireRRound + fireRDuration))
+            {
+            	Main.Player.baseFireR -= fireRDmg;
+             MainFightPanel.append(MainFightPanel.user,"Your extra fire resistance has worn off!");
+             pause(2500);
+             MainFightPanel.clearDisplay();
+             fireRActive = false;
+             fireRDmg = 0;
+            }
+        }
+        if(iceRActive == true)
+        {
+            if(!(r <= iceRRound + iceRDuration))
+            {
+            	Main.Player.baseIceR -= iceRDmg;
+             MainFightPanel.append(MainFightPanel.user,"Your extra ice resistance has worn off!");
+             pause(2500);
+             MainFightPanel.clearDisplay();
+             iceRActive = false;
+             iceRDmg = 0;
+            }
+        }
+        if(shockRActive == true)
+        {
+            if(!(r <= shockRRound + shockRDuration))
+            {
+            	Main.Player.baseShockR -= shockRDmg;
+             MainFightPanel.append(MainFightPanel.user,"Your extra shock resistance has worn off!");
+             pause(2500);
+             MainFightPanel.clearDisplay();
+             shockRActive = false;
+             shockRDmg = 0;
+            }
+        }
+        if(fireWActive == true)
+        {
+            if(!(r <= fireWRound + fireWDuration))
+            {
+            	Main.Player.baseFireR -= fireWDmg;
+             MainFightPanel.append(MainFightPanel.user,"Your weakness to fire has worn off!");
+             pause(2500);
+             MainFightPanel.clearDisplay();
+             fireWActive = false;
+             fireWDmg = 0;
+            }
+        }
+        if(iceWActive == true)
+        {
+            if(!(r <= iceWRound + iceWDuration))
+            {
+            	Main.Player.baseIceR -= iceWDmg;
+             MainFightPanel.append(MainFightPanel.user,"Your weakness to ice has worn off!");
+             pause(2500);
+             MainFightPanel.clearDisplay();
+             iceWActive = false;
+             iceWDmg = 0;
+            }
+        }
+        if(shockWActive == true)
+        {
+            if(!(r <= shockWRound + shockWDuration))
+            {
+            	Main.Player.baseShockR -= shockWDmg;
+             MainFightPanel.append(MainFightPanel.user,"Your weakness to electricity has worn off!");
+             pause(2500);
+             MainFightPanel.clearDisplay();
+             shockWActive = false;
+             shockWDmg = 0;
+            }
+        }
+        
         if(burnActive == true)
         {
             if(r < burnRound + fireDuration)
