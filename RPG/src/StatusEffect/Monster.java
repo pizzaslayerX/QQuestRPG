@@ -462,8 +462,9 @@ public class Monster
         {
             if(!(r <= fireRRound + fireRDuration))
             {
-            	Main.Player.baseFireR -= fireRDmg;
-             MainFightPanel.append(MainFightPanel.user,"Your extra fire resistance has worn off!");
+            	Monsters.MonsterManager.enemies.get(id).setFireR(Monsters.MonsterManager.enemies.get(id).getFireR() - fireRDmg);
+                MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+Monsters.MonsterManager.enemies.get(id).getName());
+            	MainFightPanel.append(MainFightPanel.enemyStatOutput,"'s extra fire resistance has worn off!");
              pause(2500);
              MainFightPanel.clearDisplay();
              fireRActive = false;
@@ -474,8 +475,9 @@ public class Monster
         {
             if(!(r <= iceRRound + iceRDuration))
             {
-            	Main.Player.baseIceR -= iceRDmg;
-             MainFightPanel.append(MainFightPanel.user,"Your extra ice resistance has worn off!");
+            	Monsters.MonsterManager.enemies.get(id).setIceR(Monsters.MonsterManager.enemies.get(id).getIceR() - iceRDmg);
+                MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+Monsters.MonsterManager.enemies.get(id).getName());
+            	MainFightPanel.append(MainFightPanel.enemyStatOutput,"'s extra ice resistance has worn off!");
              pause(2500);
              MainFightPanel.clearDisplay();
              iceRActive = false;
@@ -486,8 +488,9 @@ public class Monster
         {
             if(!(r <= shockRRound + shockRDuration))
             {
-            	Main.Player.baseShockR -= shockRDmg;
-             MainFightPanel.append(MainFightPanel.user,"Your extra shock resistance has worn off!");
+            	Monsters.MonsterManager.enemies.get(id).setShockR(Monsters.MonsterManager.enemies.get(id).getShockR() - shockRDmg);
+                MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+Monsters.MonsterManager.enemies.get(id).getName());
+            	MainFightPanel.append(MainFightPanel.enemyStatOutput,"'s extra shock resistance has worn off!");
              pause(2500);
              MainFightPanel.clearDisplay();
              shockRActive = false;
@@ -498,8 +501,9 @@ public class Monster
         {
             if(!(r <= fireWRound + fireWDuration))
             {
-            	Main.Player.baseFireR -= fireWDmg;
-             MainFightPanel.append(MainFightPanel.user,"Your weakness to fire has worn off!");
+            	Monsters.MonsterManager.enemies.get(id).setFireR(Monsters.MonsterManager.enemies.get(id).getFireR() - fireWDmg);
+                MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+Monsters.MonsterManager.enemies.get(id).getName());
+            	MainFightPanel.append(MainFightPanel.enemyStatOutput,"'s weakness to fire has worn off!");
              pause(2500);
              MainFightPanel.clearDisplay();
              fireWActive = false;
@@ -510,8 +514,9 @@ public class Monster
         {
             if(!(r <= iceWRound + iceWDuration))
             {
-            	Main.Player.baseIceR -= iceWDmg;
-             MainFightPanel.append(MainFightPanel.user,"Your weakness to ice has worn off!");
+            	Monsters.MonsterManager.enemies.get(id).setIceR(Monsters.MonsterManager.enemies.get(id).getIceR() - iceWDmg);
+                MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+Monsters.MonsterManager.enemies.get(id).getName());
+            	MainFightPanel.append(MainFightPanel.enemyStatOutput,"'s weakness to ice has worn off!");
              pause(2500);
              MainFightPanel.clearDisplay();
              iceWActive = false;
@@ -522,8 +527,9 @@ public class Monster
         {
             if(!(r <= shockWRound + shockWDuration))
             {
-            	Main.Player.baseShockR -= shockWDmg;
-             MainFightPanel.append(MainFightPanel.user,"Your weakness to electricity has worn off!");
+            	Monsters.MonsterManager.enemies.get(id).setShockR(Monsters.MonsterManager.enemies.get(id).getShockR() - shockWDmg);
+                MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+Monsters.MonsterManager.enemies.get(id).getName());
+            	MainFightPanel.append(MainFightPanel.enemyStatOutput,"'s weakness to electricity has worn off!");
              pause(2500);
              MainFightPanel.clearDisplay();
              shockWActive = false;

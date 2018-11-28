@@ -144,11 +144,79 @@ public class Identifier
     {
     	Player.startDisable(duration, dmg);
     }
+    
+    if(id == 20)
+    {
+    	MonsterManager.enemyStatuses.get(RPGRunner.target).startBurnResist(duration,dmg);
+    }
+    if(id == 21)
+    {
+    	MonsterManager.enemyStatuses.get(RPGRunner.target).startIceResist(duration,dmg);
+    }
+    if(id == 22)
+    {
+    	MonsterManager.enemyStatuses.get(RPGRunner.target).startShockResist(duration,dmg);
+    }
+    if(id == 23)
+    {
+    	MonsterManager.enemyStatuses.get(RPGRunner.target).startBurnWeak(duration,dmg);
+    }
+    if(id == 24)
+    {
+    	MonsterManager.enemyStatuses.get(RPGRunner.target).startIceWeak(duration,dmg);
+    }
+    if(id == 25)
+    {
+    	MonsterManager.enemyStatuses.get(RPGRunner.target).startShockWeak(duration,dmg);
+    }
+    if(id == 26)
+    {
+    	Player.startBurnResist(duration, dmg);
+    }
+    if(id == 27)
+    {
+    	Player.startIceResist(duration, dmg);
+    }
+    if(id == 28)
+    {
+    	Player.startShockResist(duration, dmg);
+    }
+    if(id == 29)
+    {
+    	Player.startBurnWeak(duration, dmg);
+    }
+    if(id == 30)
+    {
+    	Player.startIceWeak(duration, dmg);
+    }
+    if(id == 31)
+    {
+    	Player.startShockWeak(duration, dmg);
+    }
+    
    
     if(id == 40)
     {
     	MonsterManager.enemyStatuses.get(RPGRunner.target).startFortify(duration, dmg);
     }
+    if(id == 41)
+    {
+    	MonsterManager.enemyStatuses.get(RPGRunner.target).startFragility(duration, dmg);
+    }
+    if(id == 42)
+    {
+    	Player.startFragility(duration, dmg);
+    }
+    if(id == 43)
+    {
+    	MonsterManager.enemyStatuses.get(RPGRunner.target).startWeak(duration, dmg);
+    }
+    if(id == 44)
+    {
+    	Player.startWeak(duration, dmg);
+    }
+    
+    
     if(id == 60)
     {
     	MonsterManager.enemyStatuses.get(RPGRunner.target).startStrength(duration, dmg);
