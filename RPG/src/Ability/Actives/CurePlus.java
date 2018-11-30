@@ -1,5 +1,7 @@
 package Ability.Actives;
 
+import java.util.ArrayList;
+
 import Main.Player;
 
 public class CurePlus extends Special
@@ -23,7 +25,7 @@ public class CurePlus extends Special
     
     public CurePlus() throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,50);
     }
     
     public static void equip() throws InterruptedException {
@@ -38,4 +40,21 @@ public class CurePlus extends Special
             Thread.currentThread().interrupt();
         }
     }
+
+		@Override
+		public ArrayList<Class<? extends Special>> getNewSpecial() {
+			ArrayList<Class<? extends Special>> list = new ArrayList<Class<? extends Special>>();
+			list.add(Brilliance.class);
+			list.add(Regenerate.class);
+			list.add(UberCure.class);
+			return list;
+		}
+
+		@Override
+		public boolean isLearnable() {
+			if(Player.checkAbility(Cure.class)) {
+				return true;
+			}
+			return false;
+		}
 }
