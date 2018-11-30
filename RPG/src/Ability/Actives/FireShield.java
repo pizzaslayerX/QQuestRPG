@@ -16,7 +16,7 @@ public class FireShield extends Special
     private static boolean doesDmg;
     private static boolean statusEffect = true;
     //{Total Effects,Status Id,dmg,Duration}
-    private static int[] statusVal = {2,4,5,5,1,10,5};
+    private static int[] statusVal = {2,4,8,5,1,10,5};
     public static boolean limit = false;
     public static boolean use;
     public static boolean useTurn = true;

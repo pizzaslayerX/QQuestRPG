@@ -32,7 +32,7 @@ public abstract class Special implements Serializable{
         cost = co;
         desc = dc;
         atkDesc = ad;
-        dmg = d;
+        dmg = d;                                              
         pureDmg = pd;
         doesDmg = dd;
         statusEffect = s;

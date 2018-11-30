@@ -120,7 +120,7 @@ public class ItemManager
               MainFightPanel.append(MainFightPanel.user,"You used a ");
               MainFightPanel.append(MainFightPanel.user,itemSlot[0].substring(0, itemSlot[0].indexOf(" |")),Color.RED,20,true);
               MainFightPanel.append(MainFightPanel.user,itemSlot[0].substring(itemSlot[0].indexOf(" |")));
-              Player.weapons[Player.equippedWeapon].potionDmg = Player.weapons[Player.equippedWeapon].potionDmg +  (int)(Player.weapons[Player.equippedWeapon].dmg * (strengthUp1 / 100.0));
+              Player.baseDmg = Player.baseDmg +  (int)(Player.getDmg() * (strengthUp1 / 100.0));
               RPGRunner.eTurn = true;
               RPGRunner.pTurn = false;
               pause(3000);
@@ -186,7 +186,7 @@ public class ItemManager
               MainFightPanel.append(MainFightPanel.user,"You used a ");
               MainFightPanel.append(MainFightPanel.user,itemSlot[1].substring(0, itemSlot[1].indexOf(" |")),Color.RED,20,true);
               MainFightPanel.append(MainFightPanel.user,itemSlot[1].substring(itemSlot[1].indexOf(" |")));
-              Player.weapons[Player.equippedWeapon].potionDmg = Player.weapons[Player.equippedWeapon].potionDmg + (int)(Player.weapons[Player.equippedWeapon].dmg * (strengthUp2 / 100.0));
+              Player.baseDmg = Player.baseDmg + (int)(Player.getDmg() * (strengthUp2 / 100.0));
               RPGRunner.eTurn = true;
               RPGRunner.pTurn = false;
               pause(3000);
@@ -251,7 +251,7 @@ public class ItemManager
               MainFightPanel.append(MainFightPanel.user,"You used a ");
               MainFightPanel.append(MainFightPanel.user,itemSlot[2].substring(0, itemSlot[2].indexOf(" |")),Color.RED,20,true);
               MainFightPanel.append(MainFightPanel.user,itemSlot[2].substring(itemSlot[2].indexOf(" |")));
-              Player.weapons[Player.equippedWeapon].potionDmg = Player.weapons[Player.equippedWeapon].potionDmg + (int)(Player.weapons[Player.equippedWeapon].dmg * (strengthUp3 / 100.0));
+              Player.baseDmg = Player.baseDmg + (int)(Player.getDmg() * (strengthUp3 / 100.0));
               RPGRunner.eTurn = true;
               RPGRunner.pTurn = false;
               pause(3000);
@@ -316,7 +316,7 @@ public class ItemManager
               MainFightPanel.append(MainFightPanel.user,"You used a ");
               MainFightPanel.append(MainFightPanel.user,itemSlot[3].substring(0, itemSlot[3].indexOf(" |")),Color.RED,20,true);
               MainFightPanel.append(MainFightPanel.user,itemSlot[3].substring(itemSlot[3].indexOf(" |")));
-              Player.weapons[Player.equippedWeapon].potionDmg = Player.weapons[Player.equippedWeapon].potionDmg + (int)(Player.weapons[Player.equippedWeapon].dmg * (strengthUp4 / 100.0));
+              Player.baseDmg = Player.baseDmg + (int)(Player.getDmg() * (strengthUp4 / 100.0));
               RPGRunner.eTurn = true;
               RPGRunner.pTurn = false;
               pause(3000);
@@ -381,7 +381,7 @@ public class ItemManager
            MainFightPanel.append(MainFightPanel.user,"You used a ");
            MainFightPanel.append(MainFightPanel.user,itemSlot[4].substring(0, itemSlot[4].indexOf(" |")),Color.RED,20,true);
            MainFightPanel.append(MainFightPanel.user,itemSlot[4].substring(itemSlot[4].indexOf(" |")));
-           Player.weapons[Player.equippedWeapon].potionDmg = Player.weapons[Player.equippedWeapon].potionDmg + (int)(Player.weapons[Player.equippedWeapon].dmg * (strengthUp4 / 100.0));
+           Player.baseDmg = Player.baseDmg + (int)(Player.getDmg() * (strengthUp4 / 100.0));
            RPGRunner.eTurn = true;
            RPGRunner.pTurn = false;
            pause(3000);

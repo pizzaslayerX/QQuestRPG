@@ -30,7 +30,7 @@ public class Player implements Serializable
     public static boolean alive = true,checkReplace = false;
     public static int levelUpExp = 5;
     public static int scene = 1;
-    public static int part = 0;
+    public static int part = 1;
     public static String[] saveGameInfo = {"{Empty}","{Empty}","{Empty}","{Empty}","{Empty}"};
     public static String adifficulty;
     public static String directory;
@@ -312,6 +312,7 @@ public class Player implements Serializable
     public static void newPlayer() throws InterruptedException
     {
         String title = "Nooby";
+        Ability.Actives.Invincibility.equip();
         maxHealth = 20;
         health = 20;
         level = 1;
@@ -377,7 +378,7 @@ public class Player implements Serializable
         run.append("\nWeapon: " + weapons[equippedWeapon].modifier + weapons[equippedWeapon].name + " || Dmg: " + weapons[equippedWeapon].dmg + " | Crit: " + weapons[equippedWeapon].crit + " | " + weapons[equippedWeapon].desc);
         run.append("\nWeapon Ability: " + weapons[equippedWeapon].aName);
         run.append("\nArmor Set: " + armor[equippedArmor].name + " || Def: " + getDef() + " | " + armor[equippedArmor].desc);
-        run.append("\n -Fire Resistance: %" + armor[equippedArmor].fireR + " | Frost Resistance: %" + armor[equippedArmor].iceR + " | Shock Resistance: %" + armor[equippedArmor].shockR);
+        run.append("\n -Fire Resistance: %" + getFireR() + " | Frost Resistance: %" + getIceR() + " | Shock Resistance: %" + getShockR());
         run.append("\nChange Weapons[w]",Color.ORANGE,20,true);
         run.append("\nChange Armor[a]",Color.ORANGE,20,true);
         run.append("\nOpen Backpack[b]",Color.ORANGE,20,true);

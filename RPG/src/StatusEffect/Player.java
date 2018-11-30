@@ -449,7 +449,7 @@ public class Player
             if(!(r <= fortifyRound + fortifyDuration))
             {
             	Main.Player.baseDef -= fortifyAmount;
-             MainFightPanel.append(MainFightPanel.user,"Your extra defense has worn off!");
+             MainFightPanel.append(MainFightPanel.user,"\n\nYour extra defense has worn off!");
              pause(2500);
              MainFightPanel.clearDisplay();
              armorActive = false;
@@ -463,7 +463,7 @@ public class Player
             if(!(r <= fragileRound + fragileDuration))
             {
             	Main.Player.baseDef -= fragileAmount;
-             MainFightPanel.append(MainFightPanel.user,"Your fragility has worn off!");
+             MainFightPanel.append(MainFightPanel.user,"\n\nYour fragility has worn off!");
              pause(2500);
              MainFightPanel.clearDisplay();
              fragileActive = false;
@@ -475,7 +475,7 @@ public class Player
             if(!(r <= fireRRound + fireRDuration))
             {
             	Main.Player.baseFireR -= fireRDmg;
-             MainFightPanel.append(MainFightPanel.user,"Your extra fire resistance has worn off!");
+             MainFightPanel.append(MainFightPanel.user,"\n\nYour extra fire resistance has worn off!");
              pause(2500);
              MainFightPanel.clearDisplay();
              fireRActive = false;
@@ -487,7 +487,7 @@ public class Player
             if(!(r <= iceRRound + iceRDuration))
             {
             	Main.Player.baseIceR -= iceRDmg;
-             MainFightPanel.append(MainFightPanel.user,"Your extra ice resistance has worn off!");
+             MainFightPanel.append(MainFightPanel.user,"\n\nYour extra ice resistance has worn off!");
              pause(2500);
              MainFightPanel.clearDisplay();
              iceRActive = false;
@@ -499,7 +499,7 @@ public class Player
             if(!(r <= shockRRound + shockRDuration))
             {
             	Main.Player.baseShockR -= shockRDmg;
-             MainFightPanel.append(MainFightPanel.user,"Your extra shock resistance has worn off!");
+             MainFightPanel.append(MainFightPanel.user,"\n\nYour extra shock resistance has worn off!");
              pause(2500);
              MainFightPanel.clearDisplay();
              shockRActive = false;
@@ -511,7 +511,7 @@ public class Player
             if(!(r <= fireWRound + fireWDuration))
             {
             	Main.Player.baseFireR -= fireWDmg;
-             MainFightPanel.append(MainFightPanel.user,"Your weakness to fire has worn off!");
+             MainFightPanel.append(MainFightPanel.user,"\n\nYour weakness to fire has worn off!");
              pause(2500);
              MainFightPanel.clearDisplay();
              fireWActive = false;
@@ -523,7 +523,7 @@ public class Player
             if(!(r <= iceWRound + iceWDuration))
             {
             	Main.Player.baseIceR -= iceWDmg;
-             MainFightPanel.append(MainFightPanel.user,"Your weakness to ice has worn off!");
+             MainFightPanel.append(MainFightPanel.user,"\n\nYour weakness to ice has worn off!");
              pause(2500);
              MainFightPanel.clearDisplay();
              iceWActive = false;
@@ -535,7 +535,7 @@ public class Player
             if(!(r <= shockWRound + shockWDuration))
             {
             	Main.Player.baseShockR -= shockWDmg;
-             MainFightPanel.append(MainFightPanel.user,"Your weakness to electricity has worn off!");
+             MainFightPanel.append(MainFightPanel.user,"\n\nYour weakness to electricity has worn off!");
              pause(2500);
              MainFightPanel.clearDisplay();
              shockWActive = false;
@@ -545,7 +545,7 @@ public class Player
         if(fortifyActive == false && armorActive == true)
         {
         	Main.Player.baseDef -= fortifyAmount;
-             MainFightPanel.append(MainFightPanel.user,"You extra defense has worn off!");
+             MainFightPanel.append(MainFightPanel.user,"\n\nYou extra defense has worn off!");
              pause(2500);
              MainFightPanel.clearDisplay();
              armorActive = false;

@@ -174,9 +174,9 @@ public class RPGRunner extends JPanel
             Player.health = Player.maxHealth;
             int goldFee = (Player.gold / 10);
             Player.gold = Player.gold - goldFee;
-             append("Underworld Reincarnation Service: Fee for reincarnation: " + goldFee + " gold\n");
+             append("Fee for reincarnation: " + goldFee + " gold\n");
             pause(2000);
-             append("Underworld Reincarnation Service: You recieved a random item our of pity\n");
+             append("You recieved a random item out of pity\n");
              userWait();
             int threshold = 1 + (int)(Math.random() * 100);
             if(threshold < 5)

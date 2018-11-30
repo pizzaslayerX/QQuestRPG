@@ -1,4 +1,6 @@
 package Main;
+import Ability.Actives.DrainTouch;
+import Ability.Actives.Fury;
 import Armor.Gem;
 import Run.*;
 public class Level
@@ -382,7 +384,7 @@ public class Level
                   RPGRunner.append("You unlocked Eruption!\n");
             }
            }
-           else if(Ability.Passives.Evade.unlock == true && Player.checkAbility("Draining Touch") == true)
+           else if(Ability.Passives.Evade.unlock == true && Player.checkAbility(DrainTouch.class) == true)
            {
                RPGRunner.append("Select NEW Ability/Perk [1] [2] [3]\n");
             RPGRunner.append("[1] Reaper's Call[active]: Deals 15 Pure dmg, heals 20 HP, +3 dmg for 1 turn. | Cost: 35 Mana\n");
@@ -616,7 +618,7 @@ public class Level
         }
         if(Player.level == 17)
         {
-            if(Player.checkAbility("Fury") == true)
+            if(Player.checkAbility(Fury.class) == true)
            {
                RPGRunner.append("~~~~~YOU LEVELED UP~~~~~\n\n");
             RPGRunner.append("Gold x350\n");

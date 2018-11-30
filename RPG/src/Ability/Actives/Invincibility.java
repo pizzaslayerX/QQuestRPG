@@ -1,5 +1,7 @@
 package Ability.Actives;
 
+import java.util.ArrayList;
+
 import Main.Player;
 
 public class Invincibility extends Special
@@ -23,7 +25,7 @@ public class Invincibility extends Special
     
     public Invincibility() throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,1000);
     }
     
     public static void equip() throws InterruptedException {
@@ -38,5 +40,17 @@ public class Invincibility extends Special
             Thread.currentThread().interrupt();
         }
     }
+
+		@Override
+		public ArrayList<Class<? extends Special>> getNewSpecial() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public boolean isLearnable() {
+			// TODO Auto-generated method stub
+			return false;
+		}
 }
 

@@ -25,5 +25,6 @@ public class Reset
    			Main.Player.health = Main.Player.maxHealth;
        }
        Player.getEffects(1000);
+       Main.Player.baseDmg = 0;
    }
 }
