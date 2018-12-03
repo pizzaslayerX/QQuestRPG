@@ -8,9 +8,9 @@ public class Cure extends Special
 {
 	private static boolean targetAll = false;
     private static String name = "Cure";
-    private static String desc = "Heals 10% of max HP without using a turn | Cost: 20 Mana";
+    private static String desc = "Heals 10% of max HP without using a turn | Cost: 25 Mana";
     private static String atkDesc = "Your wounds are magically treated";
-    private static int manaCost = 20;
+    private static int manaCost = 25;
     private static int heal;
     private static int percentHeal = 10;
     private static int dmg;
@@ -31,14 +31,6 @@ public class Cure extends Special
     	Player.abilities.add(new Cure(true));
     }
     
-        public static void pause(int t)
-    {
-        try {
-            Thread.sleep(t);
-        } catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-    }
 		@Override
 		public ArrayList<Class<? extends Special>> getNewSpecial() {
 			ArrayList<Class<? extends Special>> list = new ArrayList<Class<? extends Special>>();

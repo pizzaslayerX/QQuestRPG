@@ -24,13 +24,13 @@ public class Liquify extends Special
     public static boolean use;
     public static boolean useTurn = true;
     
-    public Liquify() throws InterruptedException
+    public Liquify(boolean t) throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,90);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,90,true);
     }
     
     public static void equip() throws InterruptedException {
-    	Player.abilities.add(new Liquify());
+    	new Liquify(true);
     }
     
 

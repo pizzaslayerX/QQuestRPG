@@ -24,22 +24,13 @@ public class SnowBall extends Special
     public static boolean use;
     public static boolean useTurn = true;
     
-    public SnowBall() throws InterruptedException
+    public SnowBall(boolean t) throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,5);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,5,t);
     }
     
     public static void equip() throws InterruptedException {
-    	Player.abilities.add(new SnowBall());
-    }
-    
-        public static void pause(int t)
-    {
-        try {
-            Thread.sleep(t);
-        } catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
+    	new SnowBall(true);
     }
 
 		@Override

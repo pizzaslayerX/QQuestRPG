@@ -25,6 +25,7 @@ public class Manager
 
   
   public static void setAbility(Special s) {
+	  System.out.println("Equipped: " + s.name);
 	  for(int r = 0;r<pages.length;r++)
 		  for(int c = 0;c<pages[r].length;c++)
 			  if(pages[r][c] == null) {

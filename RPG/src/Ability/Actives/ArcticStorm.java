@@ -30,7 +30,7 @@ public class ArcticStorm extends Special
     }
    
     public static void equip() throws InterruptedException {
-    	Player.abilities.add(new ArcticStorm(true));
+    	new ArcticStorm(true);
     }
     
        

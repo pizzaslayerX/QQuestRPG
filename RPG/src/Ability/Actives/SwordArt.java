@@ -22,13 +22,13 @@ public class SwordArt extends Special
     public static boolean use;
     public static boolean useTurn = false;
      private static int[] statusVal = {0,0,0};
-    public SwordArt() throws InterruptedException
+    public SwordArt(boolean t) throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,12);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,12,t);
     }
     
     public static void equip() throws InterruptedException {
-    	Player.abilities.add(new SwordArt());
+    	new SwordArt(true);
     }
     
 

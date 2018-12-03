@@ -21,13 +21,13 @@ public class HellVoid extends Special
     public static boolean use;
     public static boolean useTurn = true;
     
-    public HellVoid() throws InterruptedException
+    public HellVoid(boolean t) throws InterruptedException
     {
         super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll);
     }
     
     public static void equip() throws InterruptedException {
-    	Player.abilities.add(new HellVoid());
+    	new HellVoid(true);
     }
     
         public static void pause(int t)

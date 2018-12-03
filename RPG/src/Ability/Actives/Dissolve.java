@@ -24,13 +24,13 @@ public class Dissolve extends Special
     public static boolean use;
     public static boolean useTurn = true;
     
-    public Dissolve() throws InterruptedException
+    public Dissolve(boolean t) throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,50);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,50,t);
     }
     
     public static void equip() throws InterruptedException {
-    	Player.abilities.add(new Dissolve());
+    	new Dissolve(true);
     }
     
 

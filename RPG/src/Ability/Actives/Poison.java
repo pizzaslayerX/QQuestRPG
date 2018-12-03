@@ -24,16 +24,15 @@ public class Poison extends Special
     public static boolean use;
     public static boolean useTurn = true;
     
-    public Poison() throws InterruptedException
+    public Poison(boolean t) throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,20);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,20,t);
     }
     
     public static void equip() throws InterruptedException {
-    	Player.abilities.add(new Poison());
+    	new Poison(true);
     }
     
-
 		@Override
 		public ArrayList<Class<? extends Special>> getNewSpecial() {
 			ArrayList<Class<? extends Special>> list = new ArrayList<Class<? extends Special>>();

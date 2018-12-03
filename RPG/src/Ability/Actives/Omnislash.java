@@ -10,7 +10,7 @@ public class Omnislash extends Special
     private static int manaCost = 0;
     private static int heal = 0;
     private static int percentHeal = 0;
-    private static String name = "Cross Slash";
+    private static String name = "Omnislash";
     private static String desc = "Targets all enemies | Hits 8 times. Deals 48-88 dmg";
     private static String atkDesc = "You lacerate the enemy in the blink of an eye. 2 EZ.";
     private static int dmg;
@@ -23,12 +23,12 @@ public class Omnislash extends Special
     public static boolean use;
     public static boolean useTurn = false;
     
-    public Omnislash() throws InterruptedException
+    public Omnislash(boolean t) throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,125);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,125,t);
     }
     public static void equip() throws InterruptedException {
-    	Player.abilities.add(new Omnislash());
+    	new Omnislash(true);
     }
     
 

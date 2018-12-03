@@ -28,7 +28,7 @@ public class Blessing extends Special
        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,140,t);
     }
     public static void equip() throws InterruptedException {
-    	Player.abilities.add(new Blessing(true));
+    	new Blessing(true);
     }
     @Override
 	public ArrayList<Class<? extends Special>> getNewSpecial() {

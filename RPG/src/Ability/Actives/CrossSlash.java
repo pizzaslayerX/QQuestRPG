@@ -23,12 +23,12 @@ public class CrossSlash extends Special
     public static boolean use;
     public static boolean useTurn = true;
     
-    public CrossSlash() throws InterruptedException
+    public CrossSlash(boolean t) throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,40);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,40,t);
     }
     public static void equip() throws InterruptedException {
-    	Player.abilities.add(new CrossSlash());
+    	new CrossSlash(true);
     }
     
 

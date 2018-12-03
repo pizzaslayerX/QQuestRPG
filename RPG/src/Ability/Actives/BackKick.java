@@ -29,7 +29,7 @@ public class BackKick extends Special
     }
     
     public static void equip() throws InterruptedException {
-    	Player.abilities.add(new BackKick(true));
+    	new BackKick(true);
     }
     
 

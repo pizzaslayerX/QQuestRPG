@@ -23,13 +23,13 @@ public class Feint extends Special
     public static boolean use;
     public static boolean useTurn = true;
     
-    public Feint() throws InterruptedException
+    public Feint(boolean t) throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,65);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,65,t);
     }
     
     public static void equip() throws InterruptedException {
-    	Player.abilities.add(new Feint());
+    	new Feint(true);
     }
     
 

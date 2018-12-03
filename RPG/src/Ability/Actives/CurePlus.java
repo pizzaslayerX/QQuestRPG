@@ -8,9 +8,9 @@ public class CurePlus extends Special
 {
 	private static boolean targetAll = false;
     private static String name = "Cure+";
-    private static String desc = "Heals 25% of max HP without using a turn | Cost: 50 Mana";
+    private static String desc = "Heals 25% of max HP without using a turn | Cost: 55 Mana";
     private static String atkDesc = "You feel a hella lot better...";
-    private static int manaCost = 50;
+    private static int manaCost = 55;
     private static int heal;
     private static int percentHeal = 25;
     private static int dmg;
