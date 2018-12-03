@@ -28,7 +28,7 @@ public class Brilliance extends Special
         super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,40,t);
     }
     public static void equip() throws InterruptedException {
-    	Player.abilities.add(new Brilliance(true));
+    	new Brilliance(true);
     }
     
 

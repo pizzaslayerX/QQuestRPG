@@ -23,13 +23,13 @@ public class FatalBlow extends Special
     public static boolean use;
     public static boolean useTurn = false;
     
-    public FatalBlow() throws InterruptedException
+    public FatalBlow(boolean t) throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,118);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,118,t);
     }
     
     public static void equip() throws InterruptedException {
-    	Player.abilities.add(new FatalBlow());
+    	new FatalBlow(true);
     }
     
 

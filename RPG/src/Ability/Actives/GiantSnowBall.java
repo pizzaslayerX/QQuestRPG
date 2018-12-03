@@ -24,13 +24,13 @@ public class GiantSnowBall extends Special
     public static boolean use;
     public static boolean useTurn = true;
     
-    public GiantSnowBall() throws InterruptedException
+    public GiantSnowBall(boolean t) throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,50);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,50,t);
     }
     
     public static void equip() throws InterruptedException {
-    	Player.abilities.add(new GiantSnowBall());
+    	new GiantSnowBall(true);
     }
     
         public static void pause(int t)

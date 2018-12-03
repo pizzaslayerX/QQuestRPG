@@ -23,23 +23,15 @@ public class Fortify extends Special
     public static boolean use;
     public static boolean useTurn = true;
     
-    public Fortify() throws InterruptedException
+    public Fortify(boolean t) throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,15);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,15,t);
     }
     
     public static void equip() throws InterruptedException {
-    	Player.abilities.add(new Fortify());
+    	new Fortify(true);
     }
     
-        public static void pause(int t)
-    {
-        try {
-            Thread.sleep(t);
-        } catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-    }
 
 		@Override
 		public ArrayList<Class<? extends Special>> getNewSpecial() {

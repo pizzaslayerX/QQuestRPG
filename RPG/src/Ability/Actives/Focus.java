@@ -23,13 +23,13 @@ public class Focus extends Special
     public static boolean use;
     public static boolean useTurn = true;
     
-    public Focus() throws InterruptedException
+    public Focus(boolean t) throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,42);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,42,t);
     }
     
     public static void equip() throws InterruptedException {
-    	Player.abilities.add(new  Focus());
+    	new Focus(true);
     }
     
 

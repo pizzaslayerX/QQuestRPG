@@ -23,13 +23,13 @@ public class Gale extends Special
     public static boolean use;
     public static boolean useTurn = true;
     
-    public Gale() throws InterruptedException
+    public Gale(boolean t) throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,20);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,20,t);
     }
     
     public static void equip() throws InterruptedException {
-    	Player.abilities.add(new Gale());
+    	new Gale(true);
     }
     
         public static void pause(int t)

@@ -1,5 +1,7 @@
 package Ability.Actives;
 
+import java.util.ArrayList;
+
 import Main.Player;
 
 public class HelpingHands extends Special
@@ -8,7 +10,7 @@ public class HelpingHands extends Special
     private static String name = "Helping Hands";
     private static String desc = "Heals 20 HP. Heals another 42 HP over 6 turns  | Cost: 56 Mana";
     private static String atkDesc = "You feel a spirit helping you recover";
-    private static int manaCost = 35;
+    private static int manaCost = 56;
     private static int heal = 20;
     private static int percentHeal;
     private static int dmg;
@@ -21,21 +23,26 @@ public class HelpingHands extends Special
     public static boolean use;
     public static boolean useTurn = true;
     
-    public HelpingHands() throws InterruptedException
+    public HelpingHands(boolean t) throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,100,t);
     }
     
     public static void equip() throws InterruptedException {
-    	Player.abilities.add(new HelpingHands());
+    	new HelpingHands(true);
     }
     
-        public static void pause(int t)
-    {
-        try {
-            Thread.sleep(t);
-        } catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-    }
+    @Override
+	public ArrayList<Class<? extends Special>> getNewSpecial() {
+		ArrayList<Class<? extends Special>> list = new ArrayList<Class<? extends Special>>();
+		list.add(DivineLove.class);
+		return list;
+	}
+
+	@Override
+	public boolean isLearnable() {
+		if(Player.checkAbility(Regenerate.class))
+			return true;
+		return false;
+	}
 }

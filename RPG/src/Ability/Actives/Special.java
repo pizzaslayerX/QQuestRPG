@@ -45,8 +45,12 @@ public abstract class Special implements Serializable{
         percentHeal = ph;
         for(int i = 0; i < sv.length;i++)
         	statusVal[i] = sv[i];
-        if(t)
+        
+        if(bo) {
         	Manager.setAbility(this);
+        	equipAbility();
+        }
+        
         targetAll = t;
         id = idCount;
         idCount++;

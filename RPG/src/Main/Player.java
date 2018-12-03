@@ -52,6 +52,7 @@ public class Player implements Serializable
     public static int baseFireR = 0;
     public static int baseDef = 0;
     public static int baseDmg = 0;
+    public static int levelPoints = 0;
     public Player(RPGRunner r)
     {
         this.run = r;
@@ -92,8 +93,9 @@ public class Player implements Serializable
     private Special[][] abilitySlot = new Special[3][5];
     private ArrayList<Special> specials;
     private int ePage;
+    private int levelP;
     
-    public Player(String t,int mh,int h,int g,int e,int lue,int mm,int m,int l,int s,String[] is,boolean pas,boolean pae,int pp,ArrayList<BackPack.Slot> bi,boolean jd,int cf,boolean ft, int stp,boolean gay,String gd,int isc,boolean luck,boolean mida,int pa, int asc, int mf, int crf,WeaponManager[] wl,ArmorManager[] al,int ew,int ea,Special[][] as,ArrayList<Special> ss,int ep)
+    public Player(String t,int mh,int h,int g,int e,int lue,int mm,int m,int l,int s,String[] is,boolean pas,boolean pae,int pp,ArrayList<BackPack.Slot> bi,boolean jd,int cf,boolean ft, int stp,boolean gay,String gd,int isc,boolean luck,boolean mida,int pa, int asc, int mf, int crf,WeaponManager[] wl,ArmorManager[] al,int ew,int ea,Special[][] as,ArrayList<Special> ss,int ep,int lp)
     {
        sweapons = wl;
        sarmor = al;
@@ -115,6 +117,7 @@ public class Player implements Serializable
        smineFloor = mf;
        scraftFloor = crf;
        
+       levelP = lp;
        ePage = ep;
        ppart = pa;
        difficulty = gd;
@@ -138,7 +141,7 @@ public class Player implements Serializable
       Player p = new Player(title,maxHealth,health,gold,exp,levelUpExp,maxMana,mana,level,scene,
                             Item.ItemManager.itemSlot,Ability.Passives.Scan.unlock,Ability.Passives.Evade.unlock,Story.path,BackPack.Manager.inventory,
                             Dungeon.jokerDeal,Dungeon.carnivalFloor,Story.firstTime,WeaponManager.strPlus,Ability.Passives.Guardian.unlock,adifficulty,Item.ItemManager.slotCount,Ability.Passives.Lucky.unlock,Ability.Passives.Midas.unlock,part,
-                            Ability.Actives.Manager.pageCount,Main.DungeonTwo.mineFloor,Main.DungeonTwo.craftFloor,weapons,armor,equippedWeapon,equippedArmor,Ability.Actives.Manager.pages,abilities,equippedPage);
+                            Ability.Actives.Manager.pageCount,Main.DungeonTwo.mineFloor,Main.DungeonTwo.craftFloor,weapons,armor,equippedWeapon,equippedArmor,Ability.Actives.Manager.pages,abilities,equippedPage,levelPoints);
       FileOutputStream fileOut = null;
       
       try {
@@ -214,6 +217,7 @@ public class Player implements Serializable
       DungeonTwo.mineFloor = p.smineFloor;
       DungeonTwo.craftFloor = p.scraftFloor;
       
+      
       equippedPage = p.ePage;
       BackPack.Manager.inventory = p.inventory;
       Ability.Passives.Scan.unlock = p.scan;
@@ -265,6 +269,7 @@ public class Player implements Serializable
        equippedArmor = p.sequippedArmor;
        weapons = p.sweapons;
        armor = p.sarmor;
+       levelPoints = p.levelP;
        
         Story.path = p.ppath;
        
@@ -317,7 +322,7 @@ public class Player implements Serializable
     public static void newPlayer() throws InterruptedException
     {
         String title = "Nooby";
-        Ability.Actives.Invincibility.equip();
+
         maxHealth = 20;
         health = 20;
         level = 1;

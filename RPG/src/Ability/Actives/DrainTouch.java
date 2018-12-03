@@ -23,13 +23,13 @@ public class DrainTouch extends Special
     public static boolean use;
     public static boolean useTurn = true;
     
-    public DrainTouch() throws InterruptedException
+    public DrainTouch(boolean t) throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,15);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,15,t);
     }
     
     public static void equip() throws InterruptedException {
-    	Player.abilities.add(new DrainTouch());
+    	new DrainTouch(true);
     }
     
 

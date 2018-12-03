@@ -6,6 +6,7 @@ import Main.Player;
 
 public class Spray extends Special
 {
+	
 	private static boolean targetAll = false;
     private static int manaCost = 45;
     private static int heal;
@@ -23,16 +24,14 @@ public class Spray extends Special
     public static boolean use;
     public static boolean useTurn = false;
     
-    public Spray() throws InterruptedException
-    {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,45);
+    public Spray(boolean t) throws InterruptedException{
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,45,t);
     }
     
     public static void equip() throws InterruptedException {
-    	Player.abilities.add(new  Spray());
+    	new Spray(true);
     }
     
-
 		@Override
 		public ArrayList<Class<? extends Special>> getNewSpecial() {
 			ArrayList<Class<? extends Special>> list = new ArrayList<Class<? extends Special>>();

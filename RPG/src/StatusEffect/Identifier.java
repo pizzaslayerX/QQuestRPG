@@ -87,32 +87,7 @@ public class Identifier
     		MainFightPanel.append(MainFightPanel.user,"\n\nYou're status effects have been removed.\n",Color.MAGENTA,20,false);
             Story.pause(2000);
             MainFightPanel.clearDisplay();
-    		   Player.burnActive = false;
-    	       Player.iceActive = false;
-    	       Player.shockActive = false;
-    	       Player.silenceActive = false;
-    	       Player.fortifyActive = false;
-    	       Player.stunActive = false;
-    	       Player.strengthActive = false;
-    	       Player.healActive = false;
-    	       Player.poisonActive = false;
-    	       Player.disableActive = false;
-    	       if(Player.transformActive == true)
-    	       {
-    	       	Player.transformActive = false;
-    	       	MainFightPanel.append(MainFightPanel.user,"\n\nPOOF!!! You turn back to normal!\n");
-    	       	Main.Story.pause(2000);
-    	           MainFightPanel.clearDisplay();
-    	           double maxHealth = Main.Player.maxHealth * 1.0;
-    				double percentHealth = (Main.Player.health / maxHealth);
-    	   		Main.Player.health = (int)(percentHealth * Player.pMaxHealth);
-    	           Main.Player.maxHealth = Player.pMaxHealth;
-    	   		Main.Player.armor[Main.Player.equippedArmor].def = Player.pDef;
-    	   		Main.Player.armor[Main.Player.equippedArmor].desc = Player.pDefDesc;
-    	   		Main.Player.armor[Main.Player.equippedArmor].name = Player.pDefName;
-    	   		if(Main.Player.health > Main.Player.maxHealth)
-    	   			Main.Player.health = Main.Player.maxHealth;
-    	       }
+            Player.getEffects(100000);
     	}
     	else if(dmg == 1)
     	{
