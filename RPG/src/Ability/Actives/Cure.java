@@ -23,12 +23,12 @@ public class Cure extends Special
     public static boolean use;
     public static boolean useTurn = false;
     
-    public Cure() throws InterruptedException
+    public Cure(boolean t) throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,50);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,0,t);
     }
     public static void equip() throws InterruptedException {
-    	Player.abilities.add(new Cure());
+    	Player.abilities.add(new Cure(true));
     }
     
         public static void pause(int t)

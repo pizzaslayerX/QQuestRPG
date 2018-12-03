@@ -23,23 +23,16 @@ public class CurePlus extends Special
     public static boolean use;
     public static boolean useTurn = false;
     
-    public CurePlus() throws InterruptedException
+    public CurePlus(boolean t) throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,50);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,50,t);
     }
     
     public static void equip() throws InterruptedException {
-    	Player.abilities.add(new CurePlus());
+    	Player.abilities.add(new CurePlus(true));
     }
     
-        public static void pause(int t)
-    {
-        try {
-            Thread.sleep(t);
-        } catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-    }
+      
 
 		@Override
 		public ArrayList<Class<? extends Special>> getNewSpecial() {
