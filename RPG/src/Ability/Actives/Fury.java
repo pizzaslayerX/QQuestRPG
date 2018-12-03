@@ -1,5 +1,7 @@
 package Ability.Actives;
 
+import java.util.ArrayList;
+
 import Main.Player;
 
 public class Fury extends Special
@@ -23,19 +25,25 @@ public class Fury extends Special
     
     public Fury() throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,48);
     }
     
     public static void equip() throws InterruptedException {
     	Player.abilities.add(new Fury());
     }
     
-        public static void pause(int t)
-    {
-        try {
-            Thread.sleep(t);
-        } catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-    }
+
+	@Override
+	public ArrayList<Class<? extends Special>> getNewSpecial() {
+		ArrayList<Class<? extends Special>> list = new ArrayList<Class<? extends Special>>();
+		list.add(Feint.class);
+		return list;
+	}
+
+	@Override
+	public boolean isLearnable() {
+		if(Player.checkAbility(Fury.class))
+			return true;
+		return false;
+	}
 }

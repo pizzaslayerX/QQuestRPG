@@ -1,5 +1,7 @@
 package Ability.Actives;
 
+import java.util.ArrayList;
+
 import Main.Player;
 
 public class Fortify extends Special
@@ -9,7 +11,7 @@ public class Fortify extends Special
     private static int heal = 0;
     private static int percentHeal = 0;
     private static String name = "Fortify";
-    private static String desc = "Increases defense by 15% for 3 turns | Costs 25 mana";
+    private static String desc = "Increases defense by 15% for 3 turns | Costs: 25 mana";
     private static String atkDesc = "Your skin thickens... A LOT";
     private static int dmg;
     private static boolean pureDmg;
@@ -23,7 +25,7 @@ public class Fortify extends Special
     
     public Fortify() throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,15);
     }
     
     public static void equip() throws InterruptedException {
@@ -38,4 +40,18 @@ public class Fortify extends Special
             Thread.currentThread().interrupt();
         }
     }
+
+		@Override
+		public ArrayList<Class<? extends Special>> getNewSpecial() {
+			ArrayList<Class<? extends Special>> list = new ArrayList<Class<? extends Special>>();
+			list.add(Untouchable.class);
+			return list;
+		}
+
+		@Override
+		public boolean isLearnable() {
+			if(Player.checkAbility(SnowBall.class))
+				return true;
+			return false;
+		}
 }

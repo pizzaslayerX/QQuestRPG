@@ -1,5 +1,8 @@
 package Ability.Actives;
 import Run.*;
+
+import java.util.ArrayList;
+
 import Main.Player;
 import Monsters.MonsterManager;
 public class SwordArt extends Special
@@ -21,19 +24,25 @@ public class SwordArt extends Special
      private static int[] statusVal = {0,0,0};
     public SwordArt() throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,12);
     }
     
     public static void equip() throws InterruptedException {
     	Player.abilities.add(new SwordArt());
     }
     
-        public static void pause(int t)
-    {
-        try {
-            Thread.sleep(t);
-        } catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-    }
+
+	@Override
+	public ArrayList<Class<? extends Special>> getNewSpecial() {
+		ArrayList<Class<? extends Special>> list = new ArrayList<Class<? extends Special>>();
+		list.add(Deshell.class);
+		list.add(SpiritBlade.class);
+		list.add(BackKick.class);
+		return list;
+	}
+
+	@Override
+	public boolean isLearnable() {
+			return true;
+	}
 }

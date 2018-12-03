@@ -245,6 +245,7 @@ public class Monster
          MainFightPanel.append(MainFightPanel.user,"weaker",Color.LIGHT_GRAY,22,true);
          MainFightPanel.append(MainFightPanel.user,"!\n");
         Story.pause(1500);
+        dmg = (int)(Monsters.MonsterManager.enemies.get(id).getAttack() * (double)(dmg/100.0));
         Monsters.MonsterManager.enemies.get(id).setAttack(Monsters.MonsterManager.enemies.get(id).getAttack() - dmg);
 
         weaponActive = true;

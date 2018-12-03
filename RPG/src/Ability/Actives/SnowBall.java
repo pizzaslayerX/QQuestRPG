@@ -11,7 +11,7 @@ public class SnowBall extends Special
     private static int manaCost = 0;
     private static int heal = 0;
     private static String name = "Snowball";
-    private static String desc = "Deals 6 frost dmg";
+    private static String desc = "Deals 6 Frost dmg";
     private static String atkDesc = "You pelt the enemy with fluffy snow";
     private static int percentHeal = 0;
     private static int dmg;
@@ -48,7 +48,6 @@ public class SnowBall extends Special
 			list.add(Gale.class);
 			list.add(Fortify.class);
 			list.add(Extinguish.class);
-			
 			return list;
 		}
 

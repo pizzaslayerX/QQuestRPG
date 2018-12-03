@@ -1,5 +1,7 @@
 package Ability.Actives;
 
+import java.util.ArrayList;
+
 import Main.Player;
 
 public class Untouchable extends Special
@@ -23,7 +25,7 @@ public class Untouchable extends Special
     
     public Untouchable() throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,120);
     }
     
     public static void equip() throws InterruptedException {
@@ -38,5 +40,19 @@ public class Untouchable extends Special
             Thread.currentThread().interrupt();
         }
     }
+
+		@Override
+		public ArrayList<Class<? extends Special>> getNewSpecial() {
+			ArrayList<Class<? extends Special>> list = new ArrayList<Class<? extends Special>>();
+			list.add(Invincibility.class);
+			return list;
+		}
+
+		@Override
+		public boolean isLearnable() {
+			if(Player.checkAbility(Fortify.class))
+				return true;
+			return false;
+		}
 }
 

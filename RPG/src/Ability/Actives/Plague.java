@@ -1,15 +1,17 @@
 package Ability.Actives;
 
+import java.util.ArrayList;
+
 import Main.Player;
 
 public class Plague extends Special
 {
-	private static boolean targetAll = false;
+	private static boolean targetAll = true;
     private static int manaCost = 0;
     private static int heal = 0;
     private static int percentHeal = 0;
     private static String name = "Plague";
-    private static String desc = "Deals 8 poison dmg per turn until 25% of enemy max health is lost from posion dmg.";
+    private static String desc = "Deals 8 poison dmg per turn for 25% of max health | Targets all enemies";
     private static String atkDesc = "A deadly pathogen has been unleashed!";
     private static int dmg;
     private static boolean pureDmg;
@@ -23,7 +25,7 @@ public class Plague extends Special
     
     public Plague() throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,45);
     }
     
     public static void equip() throws InterruptedException {
@@ -37,4 +39,17 @@ public class Plague extends Special
             Thread.currentThread().interrupt();
         }
     }
+    	@Override
+		public ArrayList<Class<? extends Special>> getNewSpecial() {
+			ArrayList<Class<? extends Special>> list = new ArrayList<Class<? extends Special>>();
+			list.add(VirulentPlague.class);
+			return list;
+		}
+
+		@Override
+		public boolean isLearnable() {
+			if(Player.checkAbility(Poison.class))
+				return true;
+			return false;
+		}
 }

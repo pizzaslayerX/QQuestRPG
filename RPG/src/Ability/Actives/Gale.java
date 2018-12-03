@@ -11,7 +11,7 @@ public class Gale extends Special
     private static int manaCost = 14;
     private static int heal = 0;
     private static String name = "Icy Gale";
-    private static String desc = "9 Frost Dmg to all targets | Costs: 14 mana";
+    private static String desc = "9 Frost dmg to all targets | Costs: 14 mana";
     private static String atkDesc = "A chilly wind sweeps through the battlefield";
     private static int dmg;
     private static boolean pureDmg;
@@ -25,7 +25,7 @@ public class Gale extends Special
     
     public Gale() throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,15);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,20);
     }
     
     public static void equip() throws InterruptedException {
@@ -43,13 +43,15 @@ public class Gale extends Special
 
 		@Override
 		public ArrayList<Class<? extends Special>> getNewSpecial() {
-			// TODO Auto-generated method stub
-			return null;
+			ArrayList<Class<? extends Special>> list = new ArrayList<Class<? extends Special>>();
+			list.add(GiantSnowBall.class);
+			return list;
 		}
 
 		@Override
 		public boolean isLearnable() {
-			// TODO Auto-generated method stub
+			if(Player.checkAbility(SnowBall.class))
+				return true;
 			return false;
 		}
 }

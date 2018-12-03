@@ -9,6 +9,8 @@ import java.io.*;
 import java.util.ArrayList;
 import javax.swing.JFileChooser;
 
+import Ability.Actives.Ignite;
+import Ability.Actives.SnowBall;
 import Ability.Actives.Special;
 
 import java.nio.file.FileSystems;
@@ -312,7 +314,7 @@ public class Player implements Serializable
     public static void newPlayer() throws InterruptedException
     {
         String title = "Nooby";
-        Ability.Actives.Invincibility.equip();
+        SnowBall.equip();
         maxHealth = 20;
         health = 20;
         level = 1;

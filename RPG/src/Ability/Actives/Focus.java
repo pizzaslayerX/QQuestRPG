@@ -1,5 +1,7 @@
 package Ability.Actives;
 
+import java.util.ArrayList;
+
 import Main.Player;
 
 public class Focus extends Special
@@ -9,7 +11,7 @@ public class Focus extends Special
     private static int heal;
     private static int percentHeal = 12;
     private static String name = "Focus";
-    private static String desc = "Heals 12% of HP and +5 dmg for 2 turns. | Costs 27 mana";
+    private static String desc = "Heals 12% of HP and grants +5 dmg for 2 turns. | Cost: 27 mana";
     private static String atkDesc = "The world slows down. You regain your compsure";
     private static int dmg;
     private static boolean pureDmg;
@@ -23,19 +25,25 @@ public class Focus extends Special
     
     public Focus() throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,42);
     }
     
     public static void equip() throws InterruptedException {
     	Player.abilities.add(new  Focus());
     }
     
-        public static void pause(int t)
-    {
-        try {
-            Thread.sleep(t);
-        } catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-    }
+
+	@Override
+	public ArrayList<Class<? extends Special>> getNewSpecial() {
+		ArrayList<Class<? extends Special>> list = new ArrayList<Class<? extends Special>>();
+		list.add(FatalBlow.class);
+		return list;
+	}
+
+	@Override
+	public boolean isLearnable() {
+		if(Player.checkAbility(SpiritBlade.class))
+			return true;
+		return false;
+	}
 }

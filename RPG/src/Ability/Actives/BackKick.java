@@ -1,5 +1,7 @@
 package Ability.Actives;
 
+import java.util.ArrayList;
+
 import Main.Player;
 
 public class BackKick extends Special
@@ -21,21 +23,28 @@ public class BackKick extends Special
     public static boolean use;
     public static boolean useTurn = true;
     
-    public BackKick() throws InterruptedException
+    public BackKick(boolean t) throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,30,t);
     }
     
     public static void equip() throws InterruptedException {
-    	Player.abilities.add(new BackKick());
+    	Player.abilities.add(new BackKick(true));
     }
     
-        public static void pause(int t)
-    {
-        try {
-            Thread.sleep(t);
-        } catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-    }
+
+	@Override
+	public ArrayList<Class<? extends Special>> getNewSpecial() {
+		ArrayList<Class<? extends Special>> list = new ArrayList<Class<? extends Special>>();
+		list.add(Fury.class);
+		list.add(CrossSlash.class);
+		return list;
+	}
+
+	@Override
+	public boolean isLearnable() {
+		if(Player.checkAbility(SwordArt.class))
+			return true;
+		return false;
+	}
 }

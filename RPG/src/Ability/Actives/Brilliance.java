@@ -1,5 +1,7 @@
 package Ability.Actives;
 
+import java.util.ArrayList;
+
 import Main.Player;
 
 public class Brilliance extends Special
@@ -21,20 +23,28 @@ public class Brilliance extends Special
     public static boolean use;
     public static boolean useTurn = true;
     
-    public Brilliance() throws InterruptedException
+    public Brilliance(boolean t) throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,40,t);
     }
     public static void equip() throws InterruptedException {
-    	Player.abilities.add(new Brilliance());
+    	Player.abilities.add(new Brilliance(true));
     }
     
-        public static void pause(int t)
-    {
-        try {
-            Thread.sleep(t);
-        } catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-    }
+
+
+	@Override
+	public ArrayList<Class<? extends Special>> getNewSpecial() {
+		ArrayList<Class<? extends Special>> list = new ArrayList<Class<? extends Special>>();
+		list.add(Purify.class);
+		return list;
+	}
+
+
+	@Override
+	public boolean isLearnable() {
+		if(Player.checkAbility(CurePlus.class))
+			return true;
+		return false;
+	}
 }
