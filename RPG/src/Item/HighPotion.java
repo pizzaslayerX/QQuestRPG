@@ -1,23 +1,41 @@
 package Item;
-public class HighPotion
-{
-    public static boolean marine = false;
-   public static boolean heal = true;
-   public static boolean strength = false;
-   public static boolean elixer = false;
-   public static int healUp = 50;
-   public static int strengthUp = 0;
-   public static String name = "Hi-Potion";
-   public static String desc = "Heals 50% of health";
+
+import java.awt.Color;
+
+import Main.Player;
+import Run.MainFightPanel;
+import Run.RPGRunner;
+
+public class HighPotion extends Consumable
+{  
+	
+	
+   public HighPotion() {
+		super(name,desc);
+		// TODO Auto-generated constructor stub
+   }
+
+   private static String name = "Hi-Potion";
+   private static String desc = "Heals 50% of health";
+   
    public static void newItem() throws InterruptedException
    {
-       ItemManager.newItem(heal,strength,elixer,healUp,strengthUp,name,desc,marine);
-       ItemManager.setItem();
+       Consumable.newItem(new HighPotion());
    }
-        public static void lootItem() throws InterruptedException
-   {
-       Main.LootScreen.setLootItem((name + " | " + desc));
-       ItemManager.newItem(heal,strength,elixer,healUp,strengthUp,name,desc,marine);
-       ItemManager.setItem();
-    }
+        
+   public static void lootItem() throws InterruptedException{
+	   Main.LootScreen.setLootItem((name + " | " + desc));
+       newItem(); 
+   }
+
+        
+   public void useItems() {   	
+	   Player.health += Player.maxHealth/2;
+       if(Player.health > Player.maxHealth)
+    	   Player.health = Player.maxHealth;
+       Player.items.remove(this);
+          
+   }
 }
+
+

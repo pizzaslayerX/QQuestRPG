@@ -2,15 +2,16 @@ package Main;
 import Run.*;
 import Weapon.*;
 import Armor.*;
+import Item.Consumable;
 import Monsters.MonsterManager;
 
 import java.awt.Color;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import javax.swing.JFileChooser;
 
-import Ability.Actives.Ignite;
-import Ability.Actives.SnowBall;
 import Ability.Actives.Special;
 
 import java.nio.file.FileSystems;
@@ -39,6 +40,8 @@ public class Player implements Serializable
     public static WeaponManager[] weapons = new WeaponManager[3];
     public static ArmorManager[] armor = new ArmorManager[3];
     public static ArrayList<Special> abilities = new ArrayList<Special>();
+    public static ArrayList<Consumable> items = new ArrayList<Consumable>(Arrays.asList(null,null,null));
+    public static int amtItems = 3; //amt of items allowed inside of list
     public static int equippedWeapon = 0;
     public static int equippedArmor = 0;
     public static int equippedPage = 0;
@@ -314,7 +317,7 @@ public class Player implements Serializable
     public static void newPlayer() throws InterruptedException
     {
         String title = "Nooby";
-        SnowBall.equip();
+        Ability.Actives.Invincibility.equip();
         maxHealth = 20;
         health = 20;
         level = 1;
