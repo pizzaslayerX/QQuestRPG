@@ -12,12 +12,13 @@ public class PowerPotion extends Consumable
 	
 	
    public PowerPotion() {
-		super(name,desc);
+		super(name,desc,price);
 		// TODO Auto-generated constructor stub
    }
 
    private static String name = "Power-Potion";
    private static String desc = "Increase Damage by 20% for 1 fight";
+   private static int price = 100;
    
    public static void newItem() throws InterruptedException
    {

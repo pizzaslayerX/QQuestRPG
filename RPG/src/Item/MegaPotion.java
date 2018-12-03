@@ -11,12 +11,13 @@ public class MegaPotion extends Consumable
 	
 	
    public MegaPotion() {
-		super(name,desc);
+		super(name,desc,price);
 		// TODO Auto-generated constructor stub
    }
 
    private static String name = "Mega-Potion";
    private static String desc = "Heals 80% of health";
+   private static int price = 100;
    
    public static void newItem() throws InterruptedException
    {

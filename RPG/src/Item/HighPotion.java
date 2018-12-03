@@ -11,12 +11,13 @@ public class HighPotion extends Consumable
 	
 	
    public HighPotion() {
-		super(name,desc);
+		super(name,desc,price);
 		// TODO Auto-generated constructor stub
    }
 
    private static String name = "Hi-Potion";
    private static String desc = "Heals 50% of health";
+   private static int price = 100;
    
    public static void newItem() throws InterruptedException
    {

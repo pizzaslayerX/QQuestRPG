@@ -11,12 +11,13 @@ public class Ultramarine extends Consumable
 	
 	
    public Ultramarine() {
-		super(name,desc);
+		super(name,desc,price);
 		// TODO Auto-generated constructor stub
    }
 
    private static String name = "Ultramarine";
    private static String desc = "Restores 50% of mana. Re-Do Turn";
+   private static int price = 100;
    
    public static void newItem() throws InterruptedException
    {

@@ -5,10 +5,11 @@ import java.awt.Color;
 import java.util.Scanner;
 
 import Main.Player;
+import Main.Shoppable;
 
 import java.io.Serializable;
 
-public abstract class Consumable implements Serializable{
+public abstract class Consumable implements Serializable,Shoppable{
 
 	private static final Color LIGHT_BLUE = new Color(0,166,255);
 	public boolean opened = false;
@@ -22,16 +23,41 @@ public abstract class Consumable implements Serializable{
    public boolean elixer;
    public int healUp;
    public int strengthUp;
+   public int price;
    public String name;
    public String desc;
 
     
-  public Consumable(String n,String d)
+  public Consumable(String n,String d,int p)
    {
 	  name = n;
 	  desc = d;
+	  price = p;
    }
    
+  @Override
+  public int sell() {
+  	// TODO Auto-generated method stub
+	  return (int)(price * 0.8);
+  }
+
+  @Override
+  public int buy() {
+  	// TODO Auto-generated method stub
+  	return price;
+  }
+
+  @Override
+  public String getDesc() {
+  	// TODO Auto-generated method stub
+  	return desc;
+  }
+
+  @Override
+  public String getName() {
+  	// TODO Auto-generated method stub
+  	return name;
+  }
  
    
    

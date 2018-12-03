@@ -11,12 +11,13 @@ public class Elixer extends Consumable
 	
 	
    public Elixer() {
-		super(name,desc);
+		super(name,desc,price);
 		// TODO Auto-generated constructor stub
    }
 
    private static String name = "Elixer";
    private static String desc = "Maxes out Mana and HP. Re-Do Turn";
+   private static int price = 100;
    
    public static void newItem() throws InterruptedException
    {
@@ -35,4 +36,6 @@ public class Elixer extends Consumable
 	   Player.items.remove(this);
           
    }
+
+
 }
