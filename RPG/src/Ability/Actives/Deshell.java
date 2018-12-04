@@ -1,10 +1,9 @@
 package Ability.Actives;
-import Run.*;
-
 import java.util.ArrayList;
 
-import Main.Player;
-import Monsters.MonsterManager;
+import backend.*;
+import gameplay.Player;
+import monsters.MonsterManager;
 public class Deshell extends Special
 {
 	private static boolean targetAll = false;

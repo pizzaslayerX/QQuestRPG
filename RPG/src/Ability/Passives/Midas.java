@@ -1,5 +1,5 @@
 package Ability.Passives;
-import Run.*;
+import backend.*;
 public class Midas
 {
     public static String name = "Midas Touch";

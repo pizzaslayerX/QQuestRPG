@@ -3,7 +3,7 @@ package Ability.Actives;
 
 import java.util.ArrayList;
 
-import Main.Player;
+import gameplay.Player;
 
 public class SnowBall extends Special
 {

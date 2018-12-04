@@ -2,7 +2,7 @@ package Ability.Actives;
 
 import java.io.Serializable;
 
-import Main.Player;
+import gameplay.Player;
 
 public class Libra extends Special implements Serializable
 {

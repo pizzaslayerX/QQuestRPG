@@ -1,6 +1,6 @@
 package Ability.Actives;
 
-import Main.Shoppable;
+import gameplay.Shoppable;
 
 public class Scroll implements Shoppable{
 

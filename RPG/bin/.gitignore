@@ -1,6 +1,6 @@
+/BackPack/
 /Ability/
 /Armor/
-/BackPack/
 /Crafting/
 /Item/
 /Main/
@@ -9,4 +9,12 @@
 /Runner.class
 /StatusEffect/
 /Weapon/
-/pics/
+/backend/
+/gameplay/
+/crafting/
+/monsters/
+/consumables/
+/statusEffect/
+/weapon/
+/backpack/
+/armor/

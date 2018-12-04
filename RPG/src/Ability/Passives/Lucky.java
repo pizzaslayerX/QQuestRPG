@@ -1,5 +1,5 @@
 package Ability.Passives;
-import Run.*;
+import backend.*;
 public class Lucky
 {
     public static String name = "Lucky Lucky";

@@ -1,6 +1,6 @@
 package Ability.Actives;
 
-import Main.Player;
+import gameplay.Player;
 
 public class FairyFire extends Special
 {

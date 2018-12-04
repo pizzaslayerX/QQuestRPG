@@ -1,12 +1,11 @@
 package Ability.Actives;
-import Run.*;
-
 import java.awt.Color;
 import java.io.IOException;
 import java.util.Scanner;
 
-import Main.Player;
-import Monsters.MonsterManager;
+import backend.*;
+import gameplay.Player;
+import monsters.MonsterManager;
 public class Manager
 {
 	public static boolean opened = false, switchOpened = false;
@@ -45,9 +44,9 @@ public class Manager
        
          if(pages[Player.equippedPage][c].limit == true && pages[Player.equippedPage][c].use == false)
         {
-          if(pages[Player.equippedPage][c].manaCost <= Main.Player.mana)
+          if(pages[Player.equippedPage][c].manaCost <= gameplay.Player.mana)
           {
-          Main.Player.mana = Main.Player.mana - pages[Player.equippedPage][c].manaCost;
+          gameplay.Player.mana = gameplay.Player.mana - pages[Player.equippedPage][c].manaCost;
           pages[Player.equippedPage][c].use = true;
           doAbility(c);
         }
@@ -66,9 +65,9 @@ public class Manager
         }
         else if(pages[Player.equippedPage][c].limit == false)
         {
-          if(pages[Player.equippedPage][c].manaCost <= Main.Player.mana)
+          if(pages[Player.equippedPage][c].manaCost <= gameplay.Player.mana)
           {
-          Main.Player.mana = Main.Player.mana - pages[Player.equippedPage][c].manaCost;
+          gameplay.Player.mana = gameplay.Player.mana - pages[Player.equippedPage][c].manaCost;
           doAbility(c);
           }
          else
@@ -101,7 +100,7 @@ public class Manager
   if(pages[Player.equippedPage][c].targetAll == true) {
 	  MainFightPanel.append(MainFightPanel.user,"\n\n" + pages[Player.equippedPage][c].atkDesc + "\n");
 	     run.pause(1500);
-    for(int m = 0;m<Monsters.MonsterManager.enemies.size();m++) {
+    for(int m = 0;m<monsters.MonsterManager.enemies.size();m++) {
     	RPGRunner.target = m;
     	if(m > 0 && MonsterManager.enemies.get(m).id != MonsterManager.enemies.get(m-1).id)
     		MainFightPanel.changePic(MonsterManager.enemies.get(m).getPic());
@@ -110,8 +109,8 @@ public class Manager
      {
        if(pages[Player.equippedPage][c].pureDmg == true)
        {
-         Monsters.MonsterManager.enemies.get(m).setHealth(Monsters.MonsterManager.enemies.get(m).getHealth() - pages[Player.equippedPage][c].dmg);
-         MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+Monsters.MonsterManager.enemies.get(m).getName() + " lost ");
+         monsters.MonsterManager.enemies.get(m).setHealth(monsters.MonsterManager.enemies.get(m).getHealth() - pages[Player.equippedPage][c].dmg);
+         MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+monsters.MonsterManager.enemies.get(m).getName() + " lost ");
          MainFightPanel.append(MainFightPanel.enemyStatOutput,pages[Player.equippedPage][c].dmg+"",Color.RED,20,true);
           MainFightPanel.append(MainFightPanel.enemyStatOutput," HP.\n");
          run.pause(2000);
@@ -119,11 +118,11 @@ public class Manager
        }
        else
        {
-         Monsters.MonsterManager.enemies.get(m).setDmgTaken(pages[Player.equippedPage][c].dmg);
-         Monsters.MonsterManager.enemies.get(m).getResist();
-         Monsters.MonsterManager.enemies.get(m).loseHealth();
-         MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+Monsters.MonsterManager.enemies.get(m).getName() + " lost ");
-         MainFightPanel.append(MainFightPanel.enemyStatOutput,Monsters.MonsterManager.enemies.get(m).getDmgTaken()+"",Color.RED,20,true);
+         monsters.MonsterManager.enemies.get(m).setDmgTaken(pages[Player.equippedPage][c].dmg);
+         monsters.MonsterManager.enemies.get(m).getResist();
+         monsters.MonsterManager.enemies.get(m).loseHealth();
+         MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+monsters.MonsterManager.enemies.get(m).getName() + " lost ");
+         MainFightPanel.append(MainFightPanel.enemyStatOutput,monsters.MonsterManager.enemies.get(m).getDmgTaken()+"",Color.RED,20,true);
           MainFightPanel.append(MainFightPanel.enemyStatOutput," HP.\n");
          run.pause(2000);
          MainFightPanel.clearEnemyDisplay();
@@ -138,7 +137,7 @@ public class Manager
          int one = pages[Player.equippedPage][c].statusVal[1 + eNum];
          int two = pages[Player.equippedPage][c].statusVal[2 + eNum];
          int three = pages[Player.equippedPage][c].statusVal[3 + eNum];
-        	 StatusEffect.Identifier.set(one,two,three);
+        	 statusEffect.Identifier.set(one,two,three);
          eNum = eNum + 3;
         }
      }
@@ -146,9 +145,9 @@ public class Manager
      {
          if(pages[Player.equippedPage][c].heal > 0)
          {
-         Main.Player.health = Main.Player.health + pages[Player.equippedPage][c].heal;
-         if(Main.Player.health > Main.Player.maxHealth)
-            Main.Player.health = Main.Player.maxHealth;
+         gameplay.Player.health = gameplay.Player.health + pages[Player.equippedPage][c].heal;
+         if(gameplay.Player.health > gameplay.Player.maxHealth)
+            gameplay.Player.health = gameplay.Player.maxHealth;
          MainFightPanel.append(MainFightPanel.user,"\nYou gained ");
          MainFightPanel.append(MainFightPanel.user,pages[Player.equippedPage][c].heal+"",Color.GREEN,20,true);
         		 MainFightPanel.append(MainFightPanel.user," HP!");
@@ -157,11 +156,11 @@ public class Manager
        }
        if(pages[Player.equippedPage][c].percentHeal > 0)
        {
-        Main.Player.health = Main.Player.health + (int)(Main.Player.maxHealth * (pages[Player.equippedPage][c].percentHeal/100.0));
-        if(Main.Player.health > Main.Player.maxHealth)
-            Main.Player.health = Main.Player.maxHealth;
+        gameplay.Player.health = gameplay.Player.health + (int)(gameplay.Player.maxHealth * (pages[Player.equippedPage][c].percentHeal/100.0));
+        if(gameplay.Player.health > gameplay.Player.maxHealth)
+            gameplay.Player.health = gameplay.Player.maxHealth;
         MainFightPanel.append(MainFightPanel.user,"\nYou gained ");
-        MainFightPanel.append(MainFightPanel.user,(int)(Main.Player.maxHealth * (pages[Player.equippedPage][c].percentHeal/100.0))+"",Color.GREEN,20,true);
+        MainFightPanel.append(MainFightPanel.user,(int)(gameplay.Player.maxHealth * (pages[Player.equippedPage][c].percentHeal/100.0))+"",Color.GREEN,20,true);
        		 MainFightPanel.append(MainFightPanel.user," HP!");
         run.pause(2500);
         MainFightPanel.clearDisplay();
@@ -177,8 +176,8 @@ public class Manager
 	     {
 	       if(pages[Player.equippedPage][c].pureDmg == true)
 	       {
-	         Monsters.MonsterManager.enemies.get(RPGRunner.target).setHealth(Monsters.MonsterManager.enemies.get(RPGRunner.target).getHealth() - pages[Player.equippedPage][c].dmg);
-	         MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+Monsters.MonsterManager.enemies.get(RPGRunner.target).getName() + " lost ");
+	         monsters.MonsterManager.enemies.get(RPGRunner.target).setHealth(monsters.MonsterManager.enemies.get(RPGRunner.target).getHealth() - pages[Player.equippedPage][c].dmg);
+	         MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+monsters.MonsterManager.enemies.get(RPGRunner.target).getName() + " lost ");
 	         MainFightPanel.append(MainFightPanel.enemyStatOutput,pages[Player.equippedPage][c].dmg+"",Color.RED,20,true);
 	          MainFightPanel.append(MainFightPanel.enemyStatOutput," HP.\n");
 	         run.pause(2000);
@@ -186,11 +185,11 @@ public class Manager
 	       }
 	       else
 	       {
-	         Monsters.MonsterManager.enemies.get(RPGRunner.target).setDmgTaken(pages[Player.equippedPage][c].dmg);
-	         Monsters.MonsterManager.enemies.get(RPGRunner.target).getResist();
-	         Monsters.MonsterManager.enemies.get(RPGRunner.target).loseHealth();
-	         MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+Monsters.MonsterManager.enemies.get(RPGRunner.target).getName() + " lost ");
-	         MainFightPanel.append(MainFightPanel.enemyStatOutput,Monsters.MonsterManager.enemies.get(RPGRunner.target).getDmgTaken()+"",Color.RED,20,true);
+	         monsters.MonsterManager.enemies.get(RPGRunner.target).setDmgTaken(pages[Player.equippedPage][c].dmg);
+	         monsters.MonsterManager.enemies.get(RPGRunner.target).getResist();
+	         monsters.MonsterManager.enemies.get(RPGRunner.target).loseHealth();
+	         MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+monsters.MonsterManager.enemies.get(RPGRunner.target).getName() + " lost ");
+	         MainFightPanel.append(MainFightPanel.enemyStatOutput,monsters.MonsterManager.enemies.get(RPGRunner.target).getDmgTaken()+"",Color.RED,20,true);
 	          MainFightPanel.append(MainFightPanel.enemyStatOutput," HP.\n");
 	         run.pause(2000);
 	         MainFightPanel.clearEnemyDisplay();
@@ -205,9 +204,9 @@ public class Manager
 	         int two = pages[Player.equippedPage][c].statusVal[2 + eNum];
 	         int three = pages[Player.equippedPage][c].statusVal[3 + eNum];
 	         if(one != 17)
-	        	 StatusEffect.Identifier.set(one,two,three);
+	        	 statusEffect.Identifier.set(one,two,three);
 	         else
-	        	 run.newLibra(Monsters.MonsterManager.enemies.get(RPGRunner.target));
+	        	 run.newLibra(monsters.MonsterManager.enemies.get(RPGRunner.target));
 	         eNum = eNum + 3;
 	        }
 	     }
@@ -215,9 +214,9 @@ public class Manager
 	     {
 	         if(pages[Player.equippedPage][c].heal > 0)
 	         {
-	         Main.Player.health = Main.Player.health + pages[Player.equippedPage][c].heal;
-	         if(Main.Player.health > Main.Player.maxHealth)
-	            Main.Player.health = Main.Player.maxHealth;
+	         gameplay.Player.health = gameplay.Player.health + pages[Player.equippedPage][c].heal;
+	         if(gameplay.Player.health > gameplay.Player.maxHealth)
+	            gameplay.Player.health = gameplay.Player.maxHealth;
 	         MainFightPanel.append(MainFightPanel.user,"\nYou gained ");
 	         MainFightPanel.append(MainFightPanel.user,pages[Player.equippedPage][c].heal+"",Color.GREEN,20,true);
 	        		 MainFightPanel.append(MainFightPanel.user," HP!");
@@ -226,11 +225,11 @@ public class Manager
 	       }
 	       if(pages[Player.equippedPage][c].percentHeal > 0)
 	       {
-	        Main.Player.health = Main.Player.health + (int)(Main.Player.maxHealth * (pages[Player.equippedPage][c].percentHeal/100.0));
-	        if(Main.Player.health > Main.Player.maxHealth)
-	            Main.Player.health = Main.Player.maxHealth;
+	        gameplay.Player.health = gameplay.Player.health + (int)(gameplay.Player.maxHealth * (pages[Player.equippedPage][c].percentHeal/100.0));
+	        if(gameplay.Player.health > gameplay.Player.maxHealth)
+	            gameplay.Player.health = gameplay.Player.maxHealth;
 	        MainFightPanel.append(MainFightPanel.user,"\nYou gained ");
-	        MainFightPanel.append(MainFightPanel.user,(int)(Main.Player.maxHealth * (pages[Player.equippedPage][c].percentHeal/100.0))+"",Color.GREEN,20,true);
+	        MainFightPanel.append(MainFightPanel.user,(int)(gameplay.Player.maxHealth * (pages[Player.equippedPage][c].percentHeal/100.0))+"",Color.GREEN,20,true);
 	       		 MainFightPanel.append(MainFightPanel.user," HP!");
 	        run.pause(2500);
 	        MainFightPanel.clearDisplay();
@@ -362,7 +361,7 @@ public class Manager
     		MainFightPanel.append(MainFightPanel.user,"\n\n Ability set changed to: ",Color.WHITE,20,false);
     		MainFightPanel.append(MainFightPanel.user,pageName[Player.equippedPage],Color.ORANGE,20,true);
     		run.pause(1500);
-    		if(Main.Player.armor[Main.Player.equippedArmor].timeScore() < 4) {
+    		if(gameplay.Player.armor[gameplay.Player.equippedArmor].timeScore() < 4) {
     			RPGRunner.pTurn = false;
     			RPGRunner.eTurn = true;
     		}	

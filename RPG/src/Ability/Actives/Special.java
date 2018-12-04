@@ -3,7 +3,7 @@ package Ability.Actives;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import Main.Player;
+import gameplay.Player;
 
 public abstract class Special implements Serializable{
     public int manaCost;
