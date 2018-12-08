@@ -8,7 +8,7 @@ public class Reaper extends Special
 {
 	private static boolean targetAll = false;
     private static String name = "Reaper's Call";
-    private static String desc = "15 pure dmg, heals 17 HP, +3 dmg for 1 turn. | Cost: 35 Mana";
+    private static String desc = "Deals 15 pure dmg. Heals 17 HP. +3 dmg for 2 turns. | Cost: 35 Mana";
     private static String atkDesc = "You command a Reaper to steal the enemy's soul";
     private static int manaCost = 35;
     private static int heal = 17;
@@ -18,7 +18,7 @@ public class Reaper extends Special
     private static boolean doesDmg = true;
     private static boolean statusEffect = true;
     //{Total Effects,Status Id,dmg,Duration}
-    private static int[] statusVal = {1,6,3,1};
+    private static int[] statusVal = {1,6,3,2};
     public static boolean limit = false;
     public static boolean use;
     public static boolean useTurn = true;
@@ -35,7 +35,7 @@ public class Reaper extends Special
     @Override
 	public ArrayList<Class<? extends Special>> getNewSpecial() {
 		ArrayList<Class<? extends Special>> list = new ArrayList<Class<? extends Special>>();
-		list.add(KarmaZatz.class);
+		list.add(Karmazatz.class);
 		return list;
 	}
 

@@ -33,6 +33,7 @@ public class Monster
     public  int disableRound;
     public  boolean disableActive;
     public  int disableDuration;
+    
     public  int stunDuration;
     public  int stunRound;
     public  boolean stunActive;
@@ -78,6 +79,10 @@ public class Monster
     public  int shockRDmg;
     public  int shockRRound;
     
+    private  int swiftDuration;
+    public  boolean swiftActive;
+    public int swiftAmount;
+    public int swiftRound;
     
     private  int iceWDuration;
     public  boolean iceWActive;
@@ -91,6 +96,16 @@ public class Monster
     public  boolean shockWActive;
     public  int shockWDmg;
     public  int shockWRound;
+    
+    private  int slowDuration;
+    public  boolean slowActive;
+    public  int slowAmount;
+    public int slowRound;
+    
+    private  int frozenDuration;
+    public  boolean frozenActive;
+    public  int frozenAmount;
+    public int frozenRound;
     
     private static final Color PUKE_GREEN = new Color(37,148,33);
     private static final Color FIRE_RED = new Color(255,0,0);
@@ -282,6 +297,19 @@ public class Monster
         pause(2000);
         MainFightPanel.clearEnemyDisplay();
     }
+    public  void startDisable(int d,int dmg)
+    {
+        MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+monsters.MonsterManager.enemies.get(id).getName() + " has been ");
+        MainFightPanel.append(MainFightPanel.enemyStatOutput,"Disabled",Color.RED,20,true);
+        MainFightPanel.append(MainFightPanel.enemyStatOutput,"!\n");
+        if(d > disableDuration) {
+        disableDuration = d;
+        disableRound = backend.RPGRunner.round;
+        disableActive = true;
+        }
+        pause(2000);
+        MainFightPanel.clearEnemyDisplay();
+    }
     public  void startStun(int d,int dmg)
     {
         MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+monsters.MonsterManager.enemies.get(id).getName() + " has been ");
@@ -293,6 +321,43 @@ public class Monster
         stunRound = backend.RPGRunner.round;
         stunActive = true;
         }
+    }
+    
+    public  void startFrozen(int d,int dmg)
+    {
+        MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+monsters.MonsterManager.enemies.get(id).getName() + " has been ");
+        MainFightPanel.append(MainFightPanel.enemyStatOutput,"frozen",LIGHT_BLUE,20,true);
+        MainFightPanel.append(MainFightPanel.enemyStatOutput,"!\n");
+        pause(1500);
+        if(d > frozenDuration) {
+        frozenDuration = d;
+        frozenRound = backend.RPGRunner.round;
+        frozenAmount = frozenAmount > dmg ? frozenAmount : dmg;
+        frozenActive = true;
+        }
+    }
+    
+    public void startSwiftness(int d, int dmg)
+    {
+    	
+       MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\nSpeed Boost! Gotta go fast!");
+        Story.pause(1200);
+        swiftDuration = d;
+        swiftRound = backend.RPGRunner.round;
+        swiftAmount += dmg;
+        swiftActive = true;
+        monsters.MonsterManager.enemies.get(id).setEvade(monsters.MonsterManager.enemies.get(id).getEvade() + dmg);
+    }
+    public void startSlow(int d, int dmg)
+    {
+    	
+       MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n" +monsters.MonsterManager.enemies.get(id).getName() +" becomes sluggish.");
+        Story.pause(1200);
+        slowDuration = d;
+        slowRound = backend.RPGRunner.round;
+        slowAmount -= dmg;
+        slowActive = true;
+        monsters.MonsterManager.enemies.get(id).setEvade(monsters.MonsterManager.enemies.get(id).getEvade() - dmg);
     }
     public void startFortify(int d, int dmg)
     {
@@ -459,6 +524,35 @@ public class Monster
              fragileAmount = 0;
             }
         }
+        if(swiftActive == true)
+        {
+            if(!(r <= swiftRound + swiftDuration))
+            {
+             monsters.MonsterManager.enemies.get(id).setEvade(monsters.MonsterManager.enemies.get(id).getEvade() -swiftAmount);
+             MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+monsters.MonsterManager.enemies.get(id)+"'s");
+             MainFightPanel.append(MainFightPanel.enemyStatOutput," swiftness ",Color.LIGHT_GRAY,20,true);
+             MainFightPanel.append(MainFightPanel.enemyStatOutput,"has faded.");
+             pause(2500);
+             MainFightPanel.clearDisplay();
+             swiftActive = false;
+             swiftAmount = 0;
+            }
+        }
+        if(slowActive == true)
+        {
+            if(!(r <= slowRound + slowDuration))
+            {
+            	monsters.MonsterManager.enemies.get(id).setEvade(monsters.MonsterManager.enemies.get(id).getEvade() -slowAmount);
+                MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+monsters.MonsterManager.enemies.get(id)+"'s");
+                MainFightPanel.append(MainFightPanel.enemyStatOutput," slowness ",Color.LIGHT_GRAY,20,true);
+                MainFightPanel.append(MainFightPanel.enemyStatOutput,"has faded.");
+                pause(2500);
+                MainFightPanel.clearDisplay();
+                slowActive = false;
+                slowAmount = 0;
+            }
+        }
+        
         if(fireRActive == true)
         {
             if(!(r <= fireRRound + fireRDuration))
@@ -755,6 +849,19 @@ public class Monster
            silenceDuration = 0;
            }
         }
+        if(disableActive == true)
+        {
+            if(r < disableRound + disableDuration)
+            {
+            MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+monsters.MonsterManager.enemies.get(id).getName() + " can't move its limbs!\n");
+            pause(2000);
+            MainFightPanel.clearEnemyDisplay();
+           }
+           else {
+           disableActive = false;
+           disableDuration = 0;
+           }
+        }
         if(stunActive == true)
         {
             if(r < stunRound + stunDuration)
@@ -775,6 +882,40 @@ public class Monster
            else {
            stunActive = false;
            stunDuration = 0;
+           }
+        }
+        if(frozenActive == true)
+        {
+            if(r < frozenRound + frozenDuration){
+            	if(burnActive) {
+            		frozenActive = false;
+            		frozenDuration = 0;
+            		frozenAmount = 0;
+            		 MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+monsters.MonsterManager.enemies.get(id).getName() + " ice has melted.\n");
+                     pause(2000);
+                     MainFightPanel.clearEnemyDisplay();
+            	}else {
+           		 	MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+monsters.MonsterManager.enemies.get(id).getName() + " is ");
+           		 	MainFightPanel.append(MainFightPanel.enemyStatOutput, "frozen\n",LIGHT_BLUE,20,true);
+           		 	pause(2000);
+           		 	MainFightPanel.clearEnemyDisplay();
+           		 	RPGRunner.eTurn=false;
+            	}
+            		
+            }
+           else {
+        	   frozenActive = false;
+        	   frozenDuration = 0;
+        	   frozenAmount = 0;
+      		 	MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+monsters.MonsterManager.enemies.get(id).getName() + "'s ice has shattered.\n\n");
+      		 	pause(1000);
+       		 	MainFightPanel.append(MainFightPanel.enemyStatOutput,monsters.MonsterManager.enemies.get(id).getName() + " took ");
+       		 	MainFightPanel.append(MainFightPanel.enemyStatOutput,frozenAmount+"",Color.RED,20,true);
+       		 	MainFightPanel.append(MainFightPanel.enemyStatOutput," freeze ",LIGHT_BLUE,20,true);
+       		 	MainFightPanel.append(MainFightPanel.enemyStatOutput,"dmg");
+       		 monsters.MonsterManager.enemies.get(id).setHealth(monsters.MonsterManager.enemies.get(id).getHealth() - frozenAmount);
+       		 	MainFightPanel.clearEnemyDisplay();
+
            }
         }
         if(healActive == true)

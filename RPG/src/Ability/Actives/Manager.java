@@ -361,7 +361,7 @@ public class Manager
     		MainFightPanel.append(MainFightPanel.user,"\n\n Ability set changed to: ",Color.WHITE,20,false);
     		MainFightPanel.append(MainFightPanel.user,pageName[Player.equippedPage],Color.ORANGE,20,true);
     		run.pause(1500);
-    		if(gameplay.Player.armor[gameplay.Player.equippedArmor].timeScore() < 4) {
+    		if(gameplay.Player.armorSet[gameplay.Player.equippedArmor].timeScore() < 4) {
     			RPGRunner.pTurn = false;
     			RPGRunner.eTurn = true;
     		}	

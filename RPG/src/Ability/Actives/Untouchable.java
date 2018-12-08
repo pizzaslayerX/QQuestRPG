@@ -37,7 +37,6 @@ public class Untouchable extends Special
 		@Override
 		public ArrayList<Class<? extends Special>> getNewSpecial() {
 			ArrayList<Class<? extends Special>> list = new ArrayList<Class<? extends Special>>();
-			list.add(Invincibility.class);
 			return list;
 		}
 

@@ -421,7 +421,7 @@ public class RPGRunner extends JPanel
                 if(action.equals("attacks"))
                 {
                     Ability.Passives.Evade.use();
-                    if(Ability.Passives.Evade.evade == true)
+                    if(Player.getEvade())
                     {
                         Playlist.playEffect("/sounds/Miss.wav");
                         MainFightPanel.append(MainFightPanel.enemyStatOutput,"The " + monsters.MonsterManager.enemies.get(m).getName());
@@ -675,7 +675,7 @@ public class RPGRunner extends JPanel
                 if(action.equals("attacks"))
                 {
                     Ability.Passives.Evade.use();
-                    if(Ability.Passives.Evade.evade == true)
+                    if(Player.getEvade())
                     {
                         Playlist.playEffect("/sounds/Miss.wav");
                         MainFightPanel.append(MainFightPanel.enemyStatOutput,"The " + monsters.MonsterManager.enemies.get(0).getName());
@@ -984,7 +984,7 @@ public class RPGRunner extends JPanel
                     MainFightPanel.clearEnemyDisplay();
                     MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+monsters.MonsterManager.enemies.get(0).getName() + ": attacks\n");
                     pause(1500);
-                    if(Ability.Passives.Evade.evade == true)
+                    if(Player.getEvade())
                     {
                         Playlist.playEffect("/sounds/Miss.wav");
                     MainFightPanel.append(MainFightPanel.enemyStatOutput,"The " + monsters.MonsterManager.enemies.get(0).getName());
@@ -1476,7 +1476,7 @@ public class RPGRunner extends JPanel
                     Ability.Passives.Evade.use();
                     MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+monsters.MonsterManager.enemies.get(0).getName() + ": " + action + "\n");
                     pause(1500);
-                    if(Ability.Passives.Evade.evade == true)
+                    if(Player.getEvade())
                     {
                     	 MainFightPanel.append(MainFightPanel.enemyStatOutput,"The " + monsters.MonsterManager.enemies.get(0).getName());
                          MainFightPanel.append(MainFightPanel.enemyStatOutput," missed",Color.BLUE,20,true);
@@ -1702,7 +1702,7 @@ public class RPGRunner extends JPanel
                     Ability.Passives.Evade.use();
                     MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+monsters.MonsterManager.enemies.get(0).getName() + ": " + action + "\n");
                     pause(1500);
-                    if(Ability.Passives.Evade.evade == true)
+                    if(Player.getEvade())
                     {
                        Playlist.playEffect("/sounds/Miss.wav");
                        MainFightPanel.append(MainFightPanel.enemyStatOutput,"The " + monsters.MonsterManager.enemies.get(0).getName());
@@ -1945,7 +1945,7 @@ public class RPGRunner extends JPanel
                     Ability.Passives.Evade.use();
                     MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+monsters.MonsterManager.enemies.get(0).getName() + ": " + action + "\n");
                     pause(1500);
-                    if(Ability.Passives.Evade.evade == true)
+                    if(Player.getEvade())
                     {
                                                Playlist.playEffect("/sounds/Miss.wav");
                                                MainFightPanel.append(MainFightPanel.enemyStatOutput,"The " + monsters.MonsterManager.enemies.get(0).getName());
@@ -2235,7 +2235,7 @@ public class RPGRunner extends JPanel
                     Ability.Passives.Evade.use();
                     MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+monsters.MonsterManager.enemies.get(0).getName() + ": " + action + "\n");
                     pause(1500);
-                    if(Ability.Passives.Evade.evade == true)
+                    if(Player.getEvade())
                     {
                         Playlist.playEffect("/sounds/Miss.wav");
                         MainFightPanel.append(MainFightPanel.enemyStatOutput,"The " + monsters.MonsterManager.enemies.get(0).getName());
@@ -2618,7 +2618,7 @@ public class RPGRunner extends JPanel
                     Ability.Passives.Evade.use();
                     MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+monsters.MonsterManager.enemies.get(0).getName() + ": attacks\n");
                     pause(1500);
-                    if(Ability.Passives.Evade.evade == true)
+                    if(Player.getEvade())
                     {
                                                Playlist.playEffect("/sounds/Miss.wav");
                                                MainFightPanel.append(MainFightPanel.enemyStatOutput,""+monsters.MonsterManager.enemies.get(0).getName());
@@ -2860,7 +2860,7 @@ public class RPGRunner extends JPanel
                 	Ability.Passives.Evade.use();
                     MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+monsters.MonsterManager.enemies.get(0).getName() + ": attacks\n");
                     pause(1500);
-                    if(Ability.Passives.Evade.evade == true)
+                    if(Player.getEvade())
                     {
                                                Playlist.playEffect("/sounds/Miss.wav");
                                                MainFightPanel.append(MainFightPanel.enemyStatOutput,""+monsters.MonsterManager.enemies.get(0).getName());

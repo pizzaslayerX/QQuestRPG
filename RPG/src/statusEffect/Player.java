@@ -87,6 +87,20 @@ public class Player
     public static int shockWDmg;
     public static int shockWRound;
     
+    private static int swiftDuration;
+    public static boolean swiftActive;
+    public static int swiftAmount;
+    public static int swiftRound;
+    
+    private static int slowDuration;
+    public static boolean slowActive;
+    public static int slowAmount;
+    public static int slowRound;
+    
+    private static  int frozenDuration;
+    public  static boolean frozenActive;
+    public  static int frozenAmount;
+    public static int frozenRound;
 
     private static final Color PUKE_GREEN = new Color(37,148,33);
     private static final Color FIRE_RED = new Color(255,0,0);
@@ -292,6 +306,41 @@ public class Player
 
     
     }
+    public static void startSwiftness(int d, int dmg)
+    {
+    	
+       MainFightPanel.append(MainFightPanel.user,"\n\nSpeed Boost! Gotta go fast!");
+        Story.pause(1200);
+        swiftDuration = d;
+        swiftRound = backend.RPGRunner.round;
+        swiftAmount += dmg;
+        swiftActive = true;
+        gameplay.Player.evadeChance += dmg;
+    }
+    public static void startSlow(int d, int dmg)
+    {
+    	
+       MainFightPanel.append(MainFightPanel.user,"\n\nYou become sluggish.");
+        Story.pause(1200);
+        slowDuration = d;
+        slowRound = backend.RPGRunner.round;
+        slowAmount -= dmg;
+        slowActive = true;
+        gameplay.Player.evadeChance -= dmg;
+    }
+    public static  void startFrozen(int d,int dmg)
+    {
+        MainFightPanel.append(MainFightPanel.user,"\n\nYou have been ");
+        MainFightPanel.append(MainFightPanel.user,"frozen",LIGHT_BLUE,20,true);
+        MainFightPanel.append(MainFightPanel.user,"!\n");
+        pause(1500);
+        if(d > frozenDuration) {
+        frozenDuration = d;
+        frozenRound = backend.RPGRunner.round;
+        frozenAmount = frozenAmount > dmg ? frozenAmount : dmg;
+        frozenActive = true;
+        }
+    }
     public static void doMultiHit(int t, int dmg) throws InterruptedException
     {
     	MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\nThe " + monsters.MonsterManager.enemies.get(RPGRunner.monsterTurn).getName() + " attacked you ");
@@ -351,8 +400,6 @@ public class Player
         weakRound = backend.RPGRunner.round;
         weakAmount -= dmg;
         weakActive = true;
-    	
-        
     }
     
          public static void startHeal(int d,int dmg)
@@ -458,12 +505,43 @@ public class Player
             }
         }
         
+        if(swiftActive == true)
+        {
+            if(!(r <= swiftRound + swiftDuration))
+            {
+            	gameplay.Player.evadeChance -= swiftAmount;
+             MainFightPanel.append(MainFightPanel.user,"\n\nYour ");
+             MainFightPanel.append(MainFightPanel.user,"swiftness ",Color.LIGHT_GRAY,20,true);
+             MainFightPanel.append(MainFightPanel.user,"has faded.");
+             pause(2500);
+             MainFightPanel.clearDisplay();
+             swiftActive = false;
+             swiftAmount = 0;
+            }
+        }
+        if(slowActive == true)
+        {
+            if(!(r <= slowRound + slowDuration))
+            {
+            	gameplay.Player.evadeChance -= slowAmount;
+             MainFightPanel.append(MainFightPanel.user,"\n\nYour ");
+             MainFightPanel.append(MainFightPanel.user,"slowness ",Color.DARK_GRAY,20,true);
+             MainFightPanel.append(MainFightPanel.user,"has faded.");
+             pause(2500);
+             MainFightPanel.clearDisplay();
+             slowActive = false;
+             slowAmount = 0;
+            }
+        }
+        
         if(fragileActive == true)
         {
             if(!(r <= fragileRound + fragileDuration))
             {
             	gameplay.Player.baseDef -= fragileAmount;
-             MainFightPanel.append(MainFightPanel.user,"\n\nYour fragility has worn off!");
+            	 MainFightPanel.append(MainFightPanel.user,"\n\nYour ");
+                 MainFightPanel.append(MainFightPanel.user,"fragility ",Color.MAGENTA,20,true);
+                 MainFightPanel.append(MainFightPanel.user,"has worn off.");
              pause(2500);
              MainFightPanel.clearDisplay();
              fragileActive = false;
@@ -845,6 +923,40 @@ public class Player
            else {
            stunActive = false;
            stunDuration = 0;
+           }
+        }
+        if(frozenActive == true)
+        {
+            if(r < frozenRound + frozenDuration){
+            	if(burnActive) {
+            		frozenActive = false;
+            		frozenDuration = 0;
+            		frozenAmount = 0;
+            		 MainFightPanel.append(MainFightPanel.user,"\n\nYour ice has melted.\n");
+                     pause(2000);
+                     MainFightPanel.clearDisplay();
+            	}else {
+           		 	MainFightPanel.append(MainFightPanel.user,"\n\nYou are ");
+           		 	MainFightPanel.append(MainFightPanel.user, "frozen\n",LIGHT_BLUE,20,true);
+           		 	pause(2000);
+           		 	MainFightPanel.clearDisplay();
+           		 	RPGRunner.pTurn=false;
+            	}
+            		
+            }
+           else {
+        	   frozenActive = false;
+        	   frozenDuration = 0;
+        	   frozenAmount = 0;
+      		 	MainFightPanel.append(MainFightPanel.user,"\n\nYour ice has shattered.");
+      		 	pause(1000);
+       		 	MainFightPanel.append(MainFightPanel.user,"\n\nYou took ");
+       		 	MainFightPanel.append(MainFightPanel.user,frozenAmount+"",Color.RED,20,true);
+       		 	MainFightPanel.append(MainFightPanel.user," freeze ",LIGHT_BLUE,20,true);
+       		 	MainFightPanel.append(MainFightPanel.user,"dmg");
+       		 	gameplay.Player.health -= frozenAmount;
+       		 	MainFightPanel.clearDisplay();
+
            }
         }
         if(healActive == true)

@@ -1,5 +1,7 @@
 package Ability.Actives;
 
+import java.util.ArrayList;
+
 import gameplay.Player;
 
 public class Stun extends Special
@@ -21,21 +23,27 @@ public class Stun extends Special
     public static boolean use;
     public static boolean useTurn = true;
     
-    public Stun() throws InterruptedException
+    public Stun(boolean t) throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,15,t);
     }
     
     public static void equip() throws InterruptedException {
-    	Player.abilities.add(new Stun());
+    	new Stun(true);
     }
     
-        public static void pause(int t)
-    {
-        try {
-            Thread.sleep(t);
-        } catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-    }
+
+	@Override
+	public ArrayList<Class<? extends Special>> getNewSpecial() {
+		ArrayList<Class<? extends Special>> list = new ArrayList<Class<? extends Special>>();
+		list.add(StunPlus.class);
+		return list;
+	}
+
+	@Override
+	public boolean isLearnable() {
+		if(Player.checkAbility(Sparks.class))
+			return true;
+		return false;
+	}
 }

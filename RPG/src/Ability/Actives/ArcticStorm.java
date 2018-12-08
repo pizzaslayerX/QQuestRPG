@@ -11,14 +11,14 @@ public class ArcticStorm extends Special
     private static int heal = 0;
     private static int percentHeal = 0;
     private static String name = "Arctic Storm";
-    private static String desc = "+20 def for 3 turns. Deals 128 frost dmg over 8 turns to all | Cost: 160 mana";
-    private static String atkDesc = "A mighty storm of hail and snow lays waste to the battlefield";
+    private static String desc = "Freeze for 1 turn. -40% Speed for 8 turns, Deals 128 Frost dmg over 8 turns | Targets All Enenmies | Cost: 160 mana";
+    private static String atkDesc = "A mighty storm of hail and snow lays waste to the battlefield.";
     private static int dmg;
     private static boolean pureDmg;
     private static boolean doesDmg = false;
     private static boolean statusEffect = true;
     //{Total Effects,Status Id,dmg,Duration}
-    private static int[] statusVal = {2,4,20,3,12,16,8};
+    private static int[] statusVal = {3,70,0,1,12,16,8,35,40,8};
     public static boolean limit = false;
     public static boolean use;
     public static boolean useTurn = true;
@@ -45,7 +45,7 @@ public class ArcticStorm extends Special
 
 		@Override
 		public boolean isLearnable() {
-			if(Player.checkAbility(IceShower.class))
+			if(Player.checkAbility(IceShower.class) && Player.checkAbility(FrostBite.class))
 				return true;
 			return false;
 		}

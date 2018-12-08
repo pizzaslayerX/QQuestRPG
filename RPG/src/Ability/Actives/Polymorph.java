@@ -1,6 +1,10 @@
 package Ability.Actives;
 
+import java.util.ArrayList;
+
 import gameplay.Player;
+
+//RETIRED CLASS.
 
 public class Polymorph extends Special
 {
@@ -21,13 +25,13 @@ public class Polymorph extends Special
     public static boolean use;
     public static boolean useTurn = false;
     
-    public Polymorph() throws InterruptedException
+    public Polymorph(boolean t) throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,0,t);
     }
     
     public static void equip() throws InterruptedException {
-    	Player.abilities.add(new Polymorph());
+    	new Polymorph(true);
     }
     
         public static void pause(int t)
@@ -38,4 +42,16 @@ public class Polymorph extends Special
             Thread.currentThread().interrupt();
         }
     }
+
+		@Override
+		public ArrayList<Class<? extends Special>> getNewSpecial() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public boolean isLearnable() {
+			// TODO Auto-generated method stub
+			return false;
+		}
 }

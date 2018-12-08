@@ -1,5 +1,7 @@
 package Ability.Actives;
 
+import java.util.ArrayList;
+
 import gameplay.Player;
 
 public class TripleThreat extends Special
@@ -9,7 +11,7 @@ public class TripleThreat extends Special
     private static int heal = 0;
     private static int percentHeal = 0;
     private static String name = "Triple Threat";
-    private static String desc = "Silience, Stun, and -10% def for 3 turns. | Costs 42 mana";
+    private static String desc = "Silience, Stun, and -10% def for 3 turns. | Cost: 42 mana";
     private static String atkDesc = "A storm of curses rains down...";
     private static int dmg;
     private static boolean pureDmg;
@@ -21,21 +23,24 @@ public class TripleThreat extends Special
     public static boolean use;
     public static boolean useTurn = true;
     
-    public TripleThreat() throws InterruptedException
+    public TripleThreat(boolean t) throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,0,t);
     }
     
     public static void equip() throws InterruptedException {
-    	Player.abilities.add(new TripleThreat());
+    	new TripleThreat(true);
     }
     
-        public static void pause(int t)
-    {
-        try {
-            Thread.sleep(t);
-        } catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-    }
+    @Override
+   	public ArrayList<Class<? extends Special>> getNewSpecial() {
+   		ArrayList<Class<? extends Special>> list = new ArrayList<Class<? extends Special>>();
+
+   		return list;
+   	}
+
+   	@Override
+   	public boolean isLearnable() {
+   		return false;
+   	}
 }

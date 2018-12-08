@@ -1,5 +1,7 @@
 package Ability.Actives;
 
+import java.util.ArrayList;
+
 import gameplay.Player;
 
 public class FireShield extends Special
@@ -21,20 +23,25 @@ public class FireShield extends Special
     public static boolean use;
     public static boolean useTurn = true;
     
-    public FireShield() throws InterruptedException
+    public FireShield(boolean t) throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,0,t);
     }
     
     public static void equip() throws InterruptedException {
-    	Player.abilities.add(new FireShield());
+    	new FireShield(true);
     }
-        public static void pause(int t)
-    {
-        try {
-            Thread.sleep(t);
-        } catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-    }
+    
+    @Override
+   	public ArrayList<Class<? extends Special>> getNewSpecial() {
+   		ArrayList<Class<? extends Special>> list = new ArrayList<Class<? extends Special>>();
+
+   		return list;
+   	}
+
+   	@Override
+   	public boolean isLearnable() {
+
+   		return false;
+   	}
 }

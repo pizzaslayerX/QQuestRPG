@@ -7,7 +7,7 @@ import backend.RPGRunner;
 import gameplay.Story;
 import monsters.MonsterManager;
 
-public class Identifier
+public final class Identifier
 {
     private static int id;
     private static int dmg;
@@ -119,6 +119,10 @@ public class Identifier
     {
     	Player.startDisable(duration, dmg);
     }
+    if(id == 17)
+    {
+    	MonsterManager.enemyStatuses.get(RPGRunner.target).startDisable(duration, dmg);
+    }
     
     if(id == 20)
     {
@@ -168,6 +172,25 @@ public class Identifier
     {
     	Player.startShockWeak(duration, dmg);
     }
+    
+    if(id == 32)
+    {
+    	Player.startSwiftness(duration, dmg);
+    }
+    if(id == 33)
+    {
+    	Player.startSlow(duration, dmg);
+    }
+    if(id == 34)
+    {
+    	MonsterManager.enemyStatuses.get(RPGRunner.target).startSwiftness(duration, dmg);
+    }
+    if(id == 35)
+    {
+    	MonsterManager.enemyStatuses.get(RPGRunner.target).startSlow(duration, dmg);
+    }
+    
+    
     
    
     if(id == 40)
@@ -228,5 +251,14 @@ public class Identifier
     {
         Player.startStun(duration,dmg);
     }
+    if(id == 69)
+    {
+        Player.startFrozen(duration,dmg);
+    }
+    if(id == 70)
+    {
+    	MonsterManager.enemyStatuses.get(RPGRunner.target).startFrozen(duration,dmg);
+    }
+    
     }
 }

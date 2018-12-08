@@ -32,19 +32,14 @@ public class Gale extends Special
     	new Gale(true);
     }
     
-        public static void pause(int t)
-    {
-        try {
-            Thread.sleep(t);
-        } catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-    }
+      
+    
 
 		@Override
 		public ArrayList<Class<? extends Special>> getNewSpecial() {
 			ArrayList<Class<? extends Special>> list = new ArrayList<Class<? extends Special>>();
 			list.add(GiantSnowBall.class);
+			list.add(CryoPlane.class);
 			return list;
 		}
 

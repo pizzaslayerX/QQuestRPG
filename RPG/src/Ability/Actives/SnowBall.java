@@ -39,6 +39,8 @@ public class SnowBall extends Special
 			list.add(Gale.class);
 			list.add(Fortify.class);
 			list.add(Extinguish.class);
+			list.add(Freeze.class);
+			list.add(GiantSnowBall.class);
 			return list;
 		}
 

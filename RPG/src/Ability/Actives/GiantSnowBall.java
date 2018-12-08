@@ -33,14 +33,6 @@ public class GiantSnowBall extends Special
     	new GiantSnowBall(true);
     }
     
-        public static void pause(int t)
-    {
-        try {
-            Thread.sleep(t);
-        } catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-    }
 
 		@Override
 		public ArrayList<Class<? extends Special>> getNewSpecial() {
@@ -50,7 +42,7 @@ public class GiantSnowBall extends Special
 
 		@Override
 		public boolean isLearnable() {
-			if(Player.checkAbility(Gale.class))
+			if(Player.checkAbility(Gale.class) && Player.checkAbility(SnowBall.class))
 				return true;
 			return false;
 		}

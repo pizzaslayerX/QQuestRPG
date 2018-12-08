@@ -1,9 +1,9 @@
 package Ability.Actives;
-import main.Player;
 import monsters.MonsterManager;
-import run.*;
 
 import java.util.ArrayList;
+
+import gameplay.Player;
 public class Insulate extends Special
 {
 	private static boolean targetAll = false;
@@ -11,8 +11,8 @@ public class Insulate extends Special
     private static int manaCost = 30;
     private static int heal = 0;
     private static String name = "Insulate";
-    private static String desc = "+20% Frost Resistance for 3 turns. Cost: 30 mana";
-    private static String atkDesc = "Layer up!!! You become much warmer.";
+    private static String desc = "+20% Shock Resistance for 3 turns | Cost: 30 mana";
+    private static String atkDesc = "You become much more resistant to electricity.";
     private static int dmg = 0;
     private static boolean pureDmg;
     private static boolean doesDmg;
@@ -20,7 +20,7 @@ public class Insulate extends Special
     public static boolean limit = false;
     public static boolean use;
     public static boolean useTurn = true;
-     private static int[] statusVal = {1,27,20,3};
+     private static int[] statusVal = {1,28,20,3};
     public Insulate(boolean t) throws InterruptedException
     {
         super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,20,t);
@@ -35,9 +35,10 @@ public class Insulate extends Special
 		@Override
 		public ArrayList<Class<? extends Special>> getNewSpecial() {
 			ArrayList<Class<? extends Special>> list = new ArrayList<Class<? extends Special>>();
-			list.add(Rawnera.class);
+			list.add(Rawflesia.class);
 			list.add(Silence.class);
 			list.add(Vehemency.class);
+			list.add(Prism.class);
 			return list;
 		}
 

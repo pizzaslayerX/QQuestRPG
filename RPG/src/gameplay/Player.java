@@ -53,6 +53,8 @@ public class Player implements Serializable
     public static int baseDef = 0;
     public static int baseDmg = 0;
     public static int levelPoints = 0;
+    public static int evadeChance = 0;
+    
     public Player(RPGRunner r)
     {
         this.run = r;
@@ -94,9 +96,11 @@ public class Player implements Serializable
     private ArrayList<Special> specials;
     private int ePage;
     private int levelP;
+    private int evasion;
     
-    public Player(String t,int mh,int h,int g,int e,int lue,int mm,int m,int l,int s,String[] is,boolean pas,boolean pae,int pp,ArrayList<backpack.Slot> bi,boolean jd,int cf,boolean ft, int stp,boolean gay,String gd,int isc,boolean luck,boolean mida,int pa, int asc, int mf, int crf,WeaponManager[] wl,ArmorManager[] al,int ew,int ea,Special[][] as,ArrayList<Special> ss,int ep,int lp)
+    public Player(String t,int mh,int h,int g,int e,int lue,int mm,int m,int l,int s,String[] is,boolean pas,boolean pae,int pp,ArrayList<backpack.Slot> bi,boolean jd,int cf,boolean ft, int stp,boolean gay,String gd,int isc,boolean luck,boolean mida,int pa, int asc, int mf, int crf,WeaponManager[] wl,ArmorManager[] al,int ew,int ea,Special[][] as,ArrayList<Special> ss,int ep,int lp,int ev)
     {
+    	evasion = ev;
        sweapons = wl;
        sarmor = al;
        sequippedWeapon = ew;
@@ -141,7 +145,7 @@ public class Player implements Serializable
       Player p = new Player(title,maxHealth,health,gold,exp,levelUpExp,maxMana,mana,level,scene,
                             consumables.ItemManager.itemSlot,Ability.Passives.Scan.unlock,Ability.Passives.Evade.unlock,Story.path,backpack.Manager.inventory,
                             Dungeon.jokerDeal,Dungeon.carnivalFloor,Story.firstTime,WeaponManager.strPlus,Ability.Passives.Guardian.unlock,adifficulty,consumables.ItemManager.slotCount,Ability.Passives.Lucky.unlock,Ability.Passives.Midas.unlock,part,
-                            Ability.Actives.Manager.pageCount,gameplay.DungeonTwo.mineFloor,gameplay.DungeonTwo.craftFloor,weapons,armorSet,equippedWeapon,equippedArmor,Ability.Actives.Manager.pages,abilities,equippedPage,levelPoints);
+                            Ability.Actives.Manager.pageCount,gameplay.DungeonTwo.mineFloor,gameplay.DungeonTwo.craftFloor,weapons,armorSet,equippedWeapon,equippedArmor,Ability.Actives.Manager.pages,abilities,equippedPage,levelPoints,evadeChance);
       FileOutputStream fileOut = null;
       
       try {
@@ -223,6 +227,7 @@ public class Player implements Serializable
       Ability.Passives.Scan.unlock = p.scan;
       Ability.Passives.Scan.use();
       Ability.Passives.Evade.unlock = p.evade;
+
       Ability.Passives.Evade.use();
        Ability.Passives.Scan.unlock = p.scan;
       Ability.Passives.Scan.use();
@@ -232,6 +237,7 @@ public class Player implements Serializable
       Ability.Passives.Lucky.use();
       Ability.Passives.Midas.unlock = p.midas;
       Ability.Passives.Midas.use();
+      evadeChance = p.evasion;
       
       if(p.difficulty.equals("Easy"))
       {
@@ -409,6 +415,13 @@ public class Player implements Serializable
       }
     }
 
+    public static boolean getEvade() {
+            int threshold = 1 + (int)(Math.random() * 100);
+            if(threshold <= evadeChance)
+            	return true;
+         return false;
+    }
+    
     public static void tryCrit(MonsterManager m)
     {
         int threshold =  1 + (int)(Math.random() * 100);

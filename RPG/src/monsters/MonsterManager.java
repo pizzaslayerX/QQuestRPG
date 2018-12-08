@@ -126,6 +126,8 @@ public abstract class MonsterManager
    
    public String action()
    {
+	 if(enemyStatuses.get(enemies.indexOf(this)).disableActive)
+		 return "nothing";
 	  return "attacks";
    /* if(smart == false)
     {

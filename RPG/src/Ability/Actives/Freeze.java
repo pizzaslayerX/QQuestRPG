@@ -1,51 +1,52 @@
+
 package Ability.Actives;
 
 import java.util.ArrayList;
 
 import gameplay.Player;
 
-public class Frankenstein extends Special
+public class Freeze extends Special
 {
 	private static boolean targetAll = false;
-    private static int manaCost = 0;
+    private static int manaCost = 20;
     private static int heal = 0;
+    private static String name = "Freeze";
+    private static String desc = "Freezes for 2 turns dealing 10 dmg. | Cost: 20 mana";
+    private static String atkDesc = "Icy crystals cover the enemy head to toe. They are frozen solid.";
     private static int percentHeal = 0;
-    private static String name = "Frankenstein's Delight";
-    private static String desc = "+5 dmg 3 turns. Deals 144 shock dmg. Stuns for 3 turns. | Cost: 72 health";
-    private static String atkDesc = "You summon a monster fueled by storms and blood to destory the enemy.";
     private static int dmg;
     private static boolean pureDmg;
     private static boolean doesDmg;
     private static boolean statusEffect = true;
     //{Total Effects,Status Id,dmg,Duration}
-    private static int[] statusVal = {4,13,144,1,3,0,3,6,5,3,9,69,0};
-    public static boolean limit = false;
+    private static int[] statusVal = {1,70,10,2};
+    public static boolean limit = true;
     public static boolean use;
     public static boolean useTurn = true;
     
-    public Frankenstein(boolean t) throws InterruptedException
+    public Freeze(boolean t) throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,0,t);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,40,t);
     }
     
     public static void equip() throws InterruptedException {
-    	new Frankenstein(true);
+    	new Freeze(true);
     }
-    
-   
-    
-      
 
 		@Override
 		public ArrayList<Class<? extends Special>> getNewSpecial() {
 			ArrayList<Class<? extends Special>> list = new ArrayList<Class<? extends Special>>();
-
+			list.add(Glacier.class);
+			list.add(AbsoluteZero.class);
+			list.add(FrostBite.class);
 			return list;
 		}
 
 		@Override
 		public boolean isLearnable() {
-
+			if(Player.checkAbility(SnowBall.class))
+				return true;
 			return false;
 		}
 }
+

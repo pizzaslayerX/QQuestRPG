@@ -46,10 +46,20 @@ public abstract class Special implements Serializable{
         for(int i = 0; i < sv.length;i++)
         	statusVal[i] = sv[i];
         
-        if(bo) {
+        if(bo && !(this instanceof Vampire)) {
         	Manager.setAbility(this);
         	equipAbility();
         }
+        if(bo && this instanceof Karmazatz) {
+        	if(Player.maxHealth > 50)
+        		Player.maxHealth -= 20;
+        	else
+        		Player.maxHealth -= 10;
+        	Player.maxMana += 30;
+        	Ability.Passives.Lucky.unlock = true;
+        	Ability.Passives.Lucky.use();
+        }
+        	
         
         targetAll = t;
         id = idCount;

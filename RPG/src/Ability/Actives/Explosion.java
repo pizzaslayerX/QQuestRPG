@@ -1,5 +1,7 @@
 package Ability.Actives;
 
+import java.util.ArrayList;
+
 import gameplay.Player;
 
 public class Explosion extends Special
@@ -19,21 +21,26 @@ public class Explosion extends Special
     public static boolean use;
     public static boolean useTurn = false;
      private static int[] statusVal = {0,0,0};
-    public Explosion() throws InterruptedException
+    public Explosion(boolean t) throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,60,t);
     }
     
     public static void equip() throws InterruptedException {
-    	Player.abilities.add(new Explosion());
+    	new Explosion(true);
     }
     
-        public static void pause(int t)
-    {
-        try {
-            Thread.sleep(t);
-        } catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-    }
+    @Override
+	public ArrayList<Class<? extends Special>> getNewSpecial() {
+		ArrayList<Class<? extends Special>> list = new ArrayList<Class<? extends Special>>();
+		list.add(Eruption.class);
+		return list;
+	}
+
+	@Override
+	public boolean isLearnable() {
+		if(Player.checkAbility(Nova.class))
+			return true;
+		return false;
+	}
 }

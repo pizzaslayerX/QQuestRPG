@@ -1,5 +1,6 @@
 package Ability.Passives;
 import backend.*;
+import gameplay.Player;
 public class Evade
 {
     public static String name = "Evade";
@@ -16,12 +17,14 @@ public class Evade
            else
            List.names = List.names + " | " + name;
            firstUse = false;
+           Player.evadeChance += 15;
         }
+       /*
        if(unlock == true)
        {
            int threshold = 1 + (int)(Math.random() * 100);
            if(threshold < evadeChance)
             evade = true;
-        }
+        }*/
     }
 }

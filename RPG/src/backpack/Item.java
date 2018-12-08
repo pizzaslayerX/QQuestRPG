@@ -190,13 +190,13 @@ public class Item implements Serializable,Shoppable{
 				return new Item("Dwarven Crystal","Mysterious crystal that is always glowing.",180);
 			}
 			public static final Item dragonEye() {
-				return new Item("Dragon Eye","The eye of a lesser dragon.",100);
+				return new Item("Dragon Eye","The eye of a powerful dragon.",410);
 			}
 			public static final Item spiderLeg() {
 				return new Item("Spider Leg","One of the legs of a powerful cave spider.",45);
 			}
 			public static final Item stone() {
-				return new Item("Stone","A combination of the minerals quartz, feldspar and biotite, in other words, a rock.",10);
+				return new Item("Stone","A combination of the minerals quartz, feldspar and biotite. In other words, a rock.",10);
 			}
 			public static final Item rubber() {
 				return new Item("Rubber","Melted and reformed latex.",15);

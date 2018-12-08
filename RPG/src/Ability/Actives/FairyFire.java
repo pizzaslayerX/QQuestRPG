@@ -1,15 +1,17 @@
 package Ability.Actives;
 
+import java.util.ArrayList;
+
 import gameplay.Player;
 
 public class FairyFire extends Special
 {
 	private static boolean targetAll = false;
     private static int percentHeal;
-    private static int manaCost = 68;
+    private static int manaCost = 78;
     private static int heal;
     private static String name = "Fairy Fire";
-    private static String desc = "Deals 80 fire dmg over 5 turns and Heals 80 HP over 5 turns | Cost: 68 Mana";
+    private static String desc = "Deals 80 fire dmg over 5 turns and Heals 80 HP over 5 turns | Cost: 78 Mana";
     private static String atkDesc = "A red and green fairy comes to your aid!";
     private static int dmg;
     private static boolean pureDmg;
@@ -21,20 +23,29 @@ public class FairyFire extends Special
     public static boolean use;
     public static boolean useTurn = true;
     
-    public FairyFire() throws InterruptedException
+    public FairyFire(boolean t) throws InterruptedException
     {
-        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll);
+        super(name,desc,atkDesc,dmg,pureDmg,doesDmg,statusEffect,limit,use,useTurn,statusVal,heal,manaCost,percentHeal,targetAll,0,t);
     }
     
     public static void equip() throws InterruptedException {
-    	Player.abilities.add(new FairyFire());
+    	new FairyFire(true);
     }
-        public static void pause(int t)
-    {
-        try {
-            Thread.sleep(t);
-        } catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-    }
+  
+    
+      
+
+		@Override
+		public ArrayList<Class<? extends Special>> getNewSpecial() {
+			ArrayList<Class<? extends Special>> list = new ArrayList<Class<? extends Special>>();
+		
+
+			return list;
+		}
+
+		@Override
+		public boolean isLearnable() {
+	
+			return false;
+		}
 }
