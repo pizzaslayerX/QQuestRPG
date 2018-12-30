@@ -102,6 +102,16 @@ public class Player
     public  static int frozenAmount;
     public static int frozenRound;
 
+    private static  int bleedDuration;
+    public  static boolean bleedActive;
+    public  static int bleedAmount;
+    public static int bleedRound;
+    
+    private static  int curseDuration;
+    public  static boolean curseActive;
+    public  static int curseAmount;
+    public static int curseRound;
+    
     private static final Color PUKE_GREEN = new Color(37,148,33);
     private static final Color FIRE_RED = new Color(255,0,0);
     private static final Color LIGHT_BLUE = new Color(0,166,255);
@@ -317,6 +327,34 @@ public class Player
         swiftActive = true;
         gameplay.Player.evadeChance += dmg;
     }
+    public static void startBleed(int d, int dmg)
+    {
+    	
+       MainFightPanel.append(MainFightPanel.user,"\n\nYou are ");
+       MainFightPanel.append(MainFightPanel.user,"bleeding",new Color(216,95,95),20,true);
+       MainFightPanel.append(MainFightPanel.user,"!");
+        Story.pause(1200);
+        bleedDuration += d;
+        bleedRound = backend.RPGRunner.round;
+        bleedAmount += (int)(((double)(dmg/100.0) * gameplay.Player.maxHealth)/d);
+        bleedActive = true;  
+    }
+    public static void startCurse(int d, int dmg)
+    {
+    	
+       MainFightPanel.append(MainFightPanel.user,"\n\nYou have been afflicted with a ");
+       MainFightPanel.append(MainFightPanel.user,"curse",new Color(184,95,216),20,true);
+       MainFightPanel.append(MainFightPanel.user,"!");
+        Story.pause(1200);
+        
+        if(dmg > curseAmount) {
+        	curseDuration = d;
+        	curseRound = backend.RPGRunner.round;
+        	curseAmount = dmg;
+        	curseActive = true;  
+        }
+    }
+    
     public static void startSlow(int d, int dmg)
     {
     	
@@ -454,6 +492,26 @@ public class Player
     
     public static void getEffects(int r)
     {
+    	 if(curseActive == true)
+         {
+             if(r <= curseRound + curseDuration)
+             {
+             MainFightPanel.append(MainFightPanel.user,"\n\nYou are suffering from a curse!\n");
+             pause(500);
+             gameplay.Player.health -= curseAmount;
+             MainFightPanel.append(MainFightPanel.user,"You lost ");
+             MainFightPanel.append(MainFightPanel.user,""+curseAmount,Color.RED,25,true);
+             MainFightPanel.append(MainFightPanel.user," HP.");
+             pause(2000);
+             MainFightPanel.clearDisplay();
+            }
+            else {
+            curseActive = false;
+            curseDuration = 0;
+            curseAmount = 0;
+            }
+         }
+    	
         if(strengthActive == true)
         {
             if(!(r <= strengthRound + strengthDuration))
@@ -903,6 +961,28 @@ public class Player
            disableDuration = 0;
            }
         }
+        if(bleedActive == true)
+        {
+            if(r <= bleedRound + bleedDuration)
+            {
+            MainFightPanel.append(MainFightPanel.user,"\n\nYou are bleeding!\n");
+            pause(500);
+            gameplay.Player.health -= bleedAmount;
+            MainFightPanel.append(MainFightPanel.user,"You lost ");
+            MainFightPanel.append(MainFightPanel.user,""+bleedAmount,Color.RED,25,true);
+            MainFightPanel.append(MainFightPanel.user," HP.");
+            pause(2000);
+            MainFightPanel.clearDisplay();
+           }
+           else {
+           bleedActive = false;
+           bleedDuration = 0;
+           bleedAmount = 0;
+           }
+        }
+        
+       
+        
         if(stunActive == true)
         {
             if(r <= stunRound + stunDuration)

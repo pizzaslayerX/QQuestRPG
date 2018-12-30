@@ -52,6 +52,7 @@ public class Player implements Serializable
     public static int baseFireR = 0;
     public static int baseDef = 0;
     public static int baseDmg = 0;
+    
     public static int levelPoints = 0;
     public static int evadeChance = 0;
     

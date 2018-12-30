@@ -1,5 +1,4 @@
 /Ability/
-/Runner.class
 /armor/
 /backend/
 /backpack/
@@ -7,5 +6,7 @@
 /crafting/
 /gameplay/
 /monsters/
+/pics/
 /statusEffect/
 /weapon/
+/Runner.class

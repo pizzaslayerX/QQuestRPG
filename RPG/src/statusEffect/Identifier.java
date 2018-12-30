@@ -213,6 +213,18 @@ public final class Identifier
     {
     	Player.startWeak(duration, dmg);
     }
+    if(id == 45) {
+    	MonsterManager.enemyStatuses.get(RPGRunner.target).startBleed(duration, dmg);
+    }
+    if(id == 46) {
+    	Player.startBleed(duration,dmg);
+    }
+    if(id == 47) {
+    	MonsterManager.enemyStatuses.get(RPGRunner.target).startCurse(duration, dmg);
+    }
+    if(id == 48) {
+    	Player.startCurse(duration,dmg);
+    }
     
     
     if(id == 60)

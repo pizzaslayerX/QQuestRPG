@@ -3,6 +3,7 @@ package Ability.Actives;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import Ability.Passives.List;
 import gameplay.Player;
 
 public abstract class Special implements Serializable{
@@ -50,14 +51,25 @@ public abstract class Special implements Serializable{
         	Manager.setAbility(this);
         	equipAbility();
         }
+        
+        if(this instanceof Vampire) {
+        	Player.abilities.add(this);
+        	 if(List.names.equals("None"))
+                 List.names = "Vampirism";
+                 else
+                	 List.names = List.names + " | Vampirism";
+        	 Player.evadeChance += 20;
+        	 Player.baseDef -= 25;
+        	 Player.baseFireR -= 50;
+        	 Player.maxHealth += (Player.maxHealth * 0.2);
+    	}
+        
         if(bo && this instanceof Karmazatz) {
-        	if(Player.maxHealth > 50)
-        		Player.maxHealth -= 20;
-        	else
-        		Player.maxHealth -= 10;
+        		Player.maxHealth = (int)(Player.maxHealth * 0.75);
         	Player.maxMana += 30;
         	Ability.Passives.Lucky.unlock = true;
         	Ability.Passives.Lucky.use();
+        	Player.baseIceR += 10;
         }
         	
         
