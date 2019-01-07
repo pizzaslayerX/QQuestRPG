@@ -217,7 +217,7 @@ public final class Identifier
     	MonsterManager.enemyStatuses.get(RPGRunner.target).startBleed(duration, dmg);
     }
     if(id == 46) {
-    	Player.startBleed(duration,dmg);
+    	Player.startBleed(duration,dmg);//happy
     }
     if(id == 47) {
     	MonsterManager.enemyStatuses.get(RPGRunner.target).startCurse(duration, dmg);

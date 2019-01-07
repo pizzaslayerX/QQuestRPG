@@ -494,6 +494,7 @@ public class Player
     {
     	 if(curseActive == true)
          {
+    		 //why not>
              if(r <= curseRound + curseDuration)
              {
              MainFightPanel.append(MainFightPanel.user,"\n\nYou are suffering from a curse!\n");
