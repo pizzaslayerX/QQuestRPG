@@ -306,7 +306,7 @@ public class Player
     public static void startFragility(int d, int dmg)
     {
     	
-       MainFightPanel.append(MainFightPanel.user,"\n\nYour defense has been lowered");
+        MainFightPanel.append(MainFightPanel.user,"\n\nYour defense has been lowered");
         Story.pause(1500);
         fragileDuration = d;
         fragileRound = backend.RPGRunner.round;
@@ -490,26 +490,50 @@ public class Player
     
   
     
-    public static void getEffects(int r)
-    {
-    	 if(curseActive == true)
-         {
-    		 //why not>
-             if(r <= curseRound + curseDuration)
-             {
-             MainFightPanel.append(MainFightPanel.user,"\n\nYou are suffering from a curse!\n");
-             pause(500);
-             gameplay.Player.health -= curseAmount;
-             MainFightPanel.append(MainFightPanel.user,"You lost ");
-             MainFightPanel.append(MainFightPanel.user,""+curseAmount,Color.RED,25,true);
-             MainFightPanel.append(MainFightPanel.user," HP.");
-             pause(2000);
-             MainFightPanel.clearDisplay();
-            }
-            else {
-            curseActive = false;
-            curseDuration = 0;
-            curseAmount = 0;
+    public static void getEffects(int r) {
+    	 if(curseActive == true)  {
+    		
+             if(r <= curseRound + curseDuration){
+            	 MainFightPanel.append(MainFightPanel.user,"\n\nYou are suffering from a curse!\n");
+        		 pause(500);
+            	 int threshold = (int)(Math.random()*101);
+            	 if(threshold < 20) {
+            		 gameplay.Player.health -= curseAmount;
+            		 MainFightPanel.append(MainFightPanel.user,"You took ");
+            		 MainFightPanel.append(MainFightPanel.user,""+curseAmount,Color.RED,25,true);
+            		 MainFightPanel.append(MainFightPanel.user," Hex",new Color(184,95,216),25, false);
+            		 MainFightPanel.append(MainFightPanel.user," Damage.");
+            		 
+            	 }else if(threshold >= 20 && threshold < 30) {
+            		  MainFightPanel.append(MainFightPanel.user,"\n\nYou have been ");
+            	       MainFightPanel.append(MainFightPanel.user,"Silenced",Color.BLUE,20,true);
+            	       MainFightPanel.append(MainFightPanel.user,"!\n");
+            	        Story.pause(1500);
+            	        int sAmount = curseAmount >= 30 ? curseAmount / 15 : 1;
+            	        if(sAmount > silenceDuration) {
+            	        	silenceDuration = sAmount;
+            	        	silenceRound = backend.RPGRunner.round;
+            	        	silenceActive = true;
+            	        }
+            	 }else if(threshold >= 30 && threshold < 40) {
+            		 MainFightPanel.append(MainFightPanel.user,"\n\nYou have been ");
+            		 MainFightPanel.append(MainFightPanel.user,"Disabled",Color.MAGENTA,20,true);
+            		 MainFightPanel.append(MainFightPanel.user,"!\n");
+            		 Story.pause(1500);
+            		 int dAmount = curseAmount >= 30 ? curseAmount / 15 : 1;
+            		 if(dAmount > disableDuration) {
+            			 disableDuration = dAmount;
+            			 disableRound = backend.RPGRunner.round;
+            			 disableActive = true;
+            		 }
+            	 }
+	            	 
+            	 pause(2000);
+        		 MainFightPanel.clearDisplay();
+            }else {
+            	curseActive = false;
+            	curseDuration = 0;
+            	curseAmount = 0;
             }
          }
     	
