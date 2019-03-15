@@ -255,7 +255,7 @@ public class Player
         }
     }
     public static void startSilence(int d,int dmg)
-    {;
+    {
        MainFightPanel.append(MainFightPanel.user,"\n\nYou have been ");
        MainFightPanel.append(MainFightPanel.user,"Silenced",Color.BLUE,20,true);
        MainFightPanel.append(MainFightPanel.user,"!\n");
@@ -295,6 +295,7 @@ public class Player
     	
        MainFightPanel.append(MainFightPanel.user,"\n\nDefense boost!!!");
         Story.pause(1500);
+        
         fortifyDuration = d;
         fortifyRound = backend.RPGRunner.round;
         fortifyAmount += dmg;
@@ -308,6 +309,9 @@ public class Player
     	
         MainFightPanel.append(MainFightPanel.user,"\n\nYour defense has been lowered");
         Story.pause(1500);
+        if(dmg > 100) {
+        	dmg = (int)(gameplay.Player.baseDef * (double)(dmg/100.0));
+        }
         fragileDuration = d;
         fragileRound = backend.RPGRunner.round;
         fragileAmount -= dmg;
@@ -416,6 +420,11 @@ public class Player
          MainFightPanel.append(MainFightPanel.user,"stronger",Color.RED,22,true);
          MainFightPanel.append(MainFightPanel.user,"!\n");
         Story.pause(1500);
+        
+        if(dmg > 100) {
+        	dmg = (int)(gameplay.Player.baseDmg * (double)(dmg/100.0));
+        }
+        
         gameplay.Player.baseDmg = gameplay.Player.baseDmg + dmg;
         weaponActive = true;
         strengthDuration = d;
@@ -425,13 +434,17 @@ public class Player
     	
         
     }
-    public static void startWeak(int d, int dmg)
-    {
+    public static void startWeak(int d, int dmg) {
     	
     	MainFightPanel.append(MainFightPanel.user,"\n\nYou have become");
          MainFightPanel.append(MainFightPanel.user," weaker",Color.LIGHT_GRAY,22,true);
          MainFightPanel.append(MainFightPanel.user,"!\n");
         Story.pause(1500);
+        if(dmg > 100) {
+        	dmg = (int)(gameplay.Player.baseDmg * (double)(dmg/100.0));
+        }
+        
+        
         gameplay.Player.baseDmg = gameplay.Player.baseDmg - dmg;
         weaponActive = true;
         weakDuration = d;
@@ -440,12 +453,15 @@ public class Player
         weakActive = true;
     }
     
-         public static void startHeal(int d,int dmg)
-    {
+    
+         public static void startHeal(int d,int dmg)  {
         	 MainFightPanel.append(MainFightPanel.user,"\n\nYou're body has begun to ");
              MainFightPanel.append(MainFightPanel.user,"heal",Color.GREEN,20,true);
              MainFightPanel.append(MainFightPanel.user,"!\n");
         Story.pause(1500);
+        if(dmg > 100) {
+        	dmg = (int)(gameplay.Player.maxHealth * (double)(dmg/100.0));
+        }
         
         healDuration = d;
         healAmount += dmg;
@@ -526,7 +542,26 @@ public class Player
             			 disableRound = backend.RPGRunner.round;
             			 disableActive = true;
             		 }
-            	 }
+            	 }else if(threshold >= 40 && threshold < 50) {
+            		 MainFightPanel.append(MainFightPanel.user,"\n\nYou have been ");
+            		 MainFightPanel.append(MainFightPanel.user,"Weakened",Color.LIGHT_GRAY,20,true);
+            		 MainFightPanel.append(MainFightPanel.user,"!\n");
+            		 Story.pause(1500);
+            		 weakAmount += (int)(curseAmount / 2.8);
+            			 weakDuration += (int)((Math.random() * 20)/8) + 1;
+            			 weakRound = backend.RPGRunner.round;
+            			 weakActive = true;
+            	 }else if(threshold >= 50 && threshold < 60) {
+            		 MainFightPanel.append(MainFightPanel.user,"\n\nYour defense has lowered");
+            		 MainFightPanel.append(MainFightPanel.user,"",Color.LIGHT_GRAY,20,true);
+            		 MainFightPanel.append(MainFightPanel.user,"!\n");
+            		 Story.pause(1500);
+            		 fragileAmount += (int)(curseAmount / 2.8);
+            			 weakDuration += (int)((Math.random() * 20)/8) + 1;
+            			 weakRound = backend.RPGRunner.round;
+            			 weakActive = true;
+            		 }
+            	 
 	            	 
             	 pause(2000);
         		 MainFightPanel.clearDisplay();
