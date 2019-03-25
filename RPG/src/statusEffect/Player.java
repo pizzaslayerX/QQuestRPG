@@ -312,12 +312,13 @@ public class Player
         if(dmg > 100) {
         	dmg = (int)(gameplay.Player.baseDef * (double)(dmg/100.0));
         }
+        gameplay.Player.baseDef = gameplay.Player.baseDef - dmg;
+
         fragileDuration = d;
         fragileRound = backend.RPGRunner.round;
         fragileAmount -= dmg;
         fragileActive = true;
-        gameplay.Player.baseDef = gameplay.Player.baseDef - dmg;
-
+       
     
     }
     public static void startSwiftness(int d, int dmg)
@@ -542,28 +543,71 @@ public class Player
             			 disableRound = backend.RPGRunner.round;
             			 disableActive = true;
             		 }
-            	 }else if(threshold >= 40 && threshold < 50) {
+            	 }else if(threshold >= 40 && threshold < 55) {
             		 MainFightPanel.append(MainFightPanel.user,"\n\nYou have been ");
             		 MainFightPanel.append(MainFightPanel.user,"Weakened",Color.LIGHT_GRAY,20,true);
             		 MainFightPanel.append(MainFightPanel.user,"!\n");
             		 Story.pause(1500);
-            		 weakAmount += (int)(curseAmount / 2.8);
+            	      
+            		 int dmg = (int)(curseAmount / 2.8);
             			 weakDuration += (int)((Math.random() * 20)/8) + 1;
             			 weakRound = backend.RPGRunner.round;
             			 weakActive = true;
-            	 }else if(threshold >= 50 && threshold < 60) {
-            		 MainFightPanel.append(MainFightPanel.user,"\n\nYour defense has lowered");
-            		 MainFightPanel.append(MainFightPanel.user,"",Color.LIGHT_GRAY,20,true);
-            		 MainFightPanel.append(MainFightPanel.user,"!\n");
-            		 Story.pause(1500);
-            		 fragileAmount += (int)(curseAmount / 2.8);
-            			 weakDuration += (int)((Math.random() * 20)/8) + 1;
-            			 weakRound = backend.RPGRunner.round;
-            			 weakActive = true;
-            		 }
+            			 dmg = (int)(gameplay.Player.baseDmg * (double)(dmg/100.0));
+            			 weakAmount -= dmg;
+            			 gameplay.Player.baseDmg -= dmg;
+            	 	}else if(threshold >= 55 && threshold < 70) {
+            	 		MainFightPanel.append(MainFightPanel.user,"\n\nYour defense has been lowered");
+            		 	MainFightPanel.append(MainFightPanel.user,"!\n");
+            		 	Story.pause(1500);
+            	        int dmg = (int)(curseAmount / 3);
+            	        dmg = (int)(gameplay.Player.baseDef * (double)(dmg/100.0));
+            	        fragileAmount -= dmg;
+            	        gameplay.Player.baseDef -= dmg;
+            	        fragileDuration += (int)((Math.random() * 20)/8) + 1;
+            	        fragileRound = backend.RPGRunner.round;
+            	        fragileActive = true;
+            		 }else if(threshold >= 70 && threshold < 80) {
+            			 MainFightPanel.append(MainFightPanel.user,"\n\nYou are feeling ");
+            		       MainFightPanel.append(MainFightPanel.user,"sluggish",Color.LIGHT_GRAY,20,true);
+            		       MainFightPanel.append(MainFightPanel.user,"!\n");
+            		        pause(1200);
+            		        slowDuration += 1+(int)(Math.random()*2.2);
+            		        slowRound = backend.RPGRunner.round;
+            		        int dmg = curseAmount / 3;
+            		        slowAmount -= dmg;
+            		        slowActive = true;
+            		        gameplay.Player.evadeChance -= dmg;
+            		 }else if(threshold >= 80 && threshold < 90) {
+            			 MainFightPanel.append(MainFightPanel.user,"\n\nYour elemental resistance has been lowered! ");
+          		        pause(1500);
+          		        
+          		        gameplay.Player.baseShockR -= curseAmount / 2;
+          	 
+          	        
+          		        shockWDuration = (curseAmount / 20) + 1;
+          		        shockWDmg -= curseAmount / 2;
+          		        shockWRound = backend.RPGRunner.round;
+          		        shockWActive = true;
+          		      
+          		        gameplay.Player.baseFireR -= curseAmount / 2;
+          		        fireWDuration = (curseAmount / 20) + 1;
+          		        fireWDmg -= curseAmount / 2;
+          		        fireWRound = backend.RPGRunner.round;
+          		        fireWActive = true;
+          		      
+          		        gameplay.Player.baseIceR -= curseAmount / 2;
+          		        iceWDuration = (curseAmount / 20) + 1;
+          		        iceWDmg -= curseAmount / 2;
+          		        iceWRound = backend.RPGRunner.round;
+          		        iceWActive = true;
+          		 }else {
+          			 MainFightPanel.append(MainFightPanel.user,"\n\nNothing happens...");
+       		        pause(1500);
+          		 }
             	 
 	            	 
-            	 pause(2000);
+            
         		 MainFightPanel.clearDisplay();
             }else {
             	curseActive = false;
@@ -642,9 +686,9 @@ public class Player
             if(!(r <= slowRound + slowDuration))
             {
             	gameplay.Player.evadeChance -= slowAmount;
-             MainFightPanel.append(MainFightPanel.user,"\n\nYour ");
-             MainFightPanel.append(MainFightPanel.user,"slowness ",Color.DARK_GRAY,20,true);
-             MainFightPanel.append(MainFightPanel.user,"has faded.");
+             MainFightPanel.append(MainFightPanel.user,"\n\nYou feel your ");
+             MainFightPanel.append(MainFightPanel.user,"energy ",Color.DARK_GRAY,20,true);
+             MainFightPanel.append(MainFightPanel.user,"return to you.");
              pause(2500);
              MainFightPanel.clearDisplay();
              slowActive = false;

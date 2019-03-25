@@ -107,6 +107,16 @@ public class Monster
     public  int frozenAmount;
     public int frozenRound;
     
+    private  int bleedDuration;
+    public   boolean bleedActive;
+    public   int bleedAmount;
+    public  int bleedRound;
+    
+    private   int curseDuration;
+    public   boolean curseActive;
+    public   int curseAmount;
+    public  int curseRound;
+    
     private static final Color PUKE_GREEN = new Color(37,148,33);
     private static final Color FIRE_RED = new Color(255,0,0);
     private static final Color LIGHT_BLUE = new Color(0,166,255);
@@ -448,10 +458,139 @@ public class Monster
         strengthActive = true;
         
     }
+    public  void startBleed(int d, int dmg)
+    {
+    	
+       MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+monsters.MonsterManager.enemies.get(id).getName() +" is ");
+       MainFightPanel.append(MainFightPanel.enemyStatOutput,"bleeding",new Color(216,95,95),20,true);
+       MainFightPanel.append(MainFightPanel.enemyStatOutput,"!");
+        Story.pause(1200);
+        bleedDuration += d;
+        bleedRound = backend.RPGRunner.round;
+        bleedAmount += (int)(((double)(dmg/100.0) * monsters.MonsterManager.enemies.get(id).getMaxHealth())/d);
+        bleedActive = true;  
+    }
+    public  void startCurse(int d, int dmg)
+    {
+    	
+       MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+monsters.MonsterManager.enemies.get(id).getName() +" has been afflicted with a ");
+       MainFightPanel.append(MainFightPanel.enemyStatOutput,"curse",new Color(184,95,216),20,true);
+       MainFightPanel.append(MainFightPanel.enemyStatOutput,"!");
+        Story.pause(1200);
+        
+        if(dmg > curseAmount) {
+        	curseDuration = d;
+        	curseRound = backend.RPGRunner.round;
+        	curseAmount = dmg;
+        	curseActive = true;  
+        }
+    }
     
     
     public  void getEffects(int r)
     {
+    	 if(curseActive == true)  {
+     		
+             if(r <= curseRound + curseDuration){
+            	 MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+monsters.MonsterManager.enemies.get(id).getName() +  " is suffering from a curse!\n");
+        		 pause(500);
+            	 int threshold = (int)(Math.random()*101);
+            	 if(threshold < 20) {
+            		 monsters.MonsterManager.enemies.get(id).setHealth(monsters.MonsterManager.enemies.get(id).getHealth() - curseAmount);
+            		 MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+monsters.MonsterManager.enemies.get(id).getName() +  " took ");
+            		 MainFightPanel.append(MainFightPanel.enemyStatOutput,""+curseAmount,Color.RED,25,true);
+            		 MainFightPanel.append(MainFightPanel.enemyStatOutput," Hex",new Color(184,95,216),25, false);
+            		 MainFightPanel.append(MainFightPanel.enemyStatOutput," Damage.");
+            		 
+            	 }else if(threshold >= 20 && threshold < 30) {
+            		  MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+monsters.MonsterManager.enemies.get(id).getName() +  " has been ");
+            	       MainFightPanel.append(MainFightPanel.enemyStatOutput,"Silenced",Color.BLUE,20,true);
+            	       MainFightPanel.append(MainFightPanel.enemyStatOutput,"!\n");
+            	        Story.pause(1500);
+            	        int sAmount = curseAmount >= 30 ? curseAmount / 15 : 1;
+            	        if(sAmount > silenceDuration) {
+            	        	silenceDuration = sAmount;
+            	        	silenceRound = backend.RPGRunner.round;
+            	        	silenceActive = true;
+            	        }
+            	 }else if(threshold >= 30 && threshold < 40) {
+            		 MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+monsters.MonsterManager.enemies.get(id).getName() +  " has been ");
+            		 MainFightPanel.append(MainFightPanel.enemyStatOutput,"Disabled",Color.MAGENTA,20,true);
+            		 MainFightPanel.append(MainFightPanel.enemyStatOutput,"!\n");
+            		 Story.pause(1500);
+            		 int dAmount = curseAmount >= 30 ? curseAmount / 15 : 1;
+            		 if(dAmount > disableDuration) {
+            			 disableDuration = dAmount;
+            			 disableRound = backend.RPGRunner.round;
+            			 disableActive = true;
+            		 }
+            	 }else if(threshold >= 40 && threshold < 55) {
+            		 MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+monsters.MonsterManager.enemies.get(id).getName() +  " has been ");
+            		 MainFightPanel.append(MainFightPanel.enemyStatOutput,"Weakened",Color.LIGHT_GRAY,20,true);
+            		 MainFightPanel.append(MainFightPanel.enemyStatOutput,"!\n");
+            		 Story.pause(1500);
+            		 int dmg = (int)(curseAmount / 2.8);
+        			 weakDuration += (int)((Math.random() * 20)/8) + 1;
+        			 weakRound = backend.RPGRunner.round;
+        			 weakActive = true;
+        			 dmg = (int)(gameplay.Player.baseDmg * (double)(dmg/100.0));
+        			 weakAmount -= dmg;
+        			 monsters.MonsterManager.enemies.get(id).setAttack(monsters.MonsterManager.enemies.get(id).getAttack() - dmg);
+        			 
+            	 	}else if(threshold >= 55 && threshold < 70) {
+            		 MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+monsters.MonsterManager.enemies.get(id).getName() +  "'s defense has been lowered");
+            		 MainFightPanel.append(MainFightPanel.enemyStatOutput,"!\n");
+            		 Story.pause(1500);
+            		 fragileAmount += (int)(curseAmount / 3);
+            			 fragileDuration += (int)((Math.random() * 20)/8) + 1;
+            			 fragileRound = backend.RPGRunner.round;
+            			 fragileActive = true;
+            		 }else if(threshold >= 70 && threshold < 80) {
+            			 MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+monsters.MonsterManager.enemies.get(id).getName() +  " is ");
+            		       MainFightPanel.append(MainFightPanel.enemyStatOutput,"sluggish",Color.LIGHT_GRAY,20,true);
+            		       MainFightPanel.append(MainFightPanel.enemyStatOutput,"!\n");
+            		        pause(1200);
+            		        slowDuration += 1+(int)(Math.random()*2.2);
+            		        slowRound = backend.RPGRunner.round;
+            		        slowAmount -= curseAmount / 3;
+            		        slowActive = true;
+            		        monsters.MonsterManager.enemies.get(id).setEvade(monsters.MonsterManager.enemies.get(id).getEvade() - slowAmount);
+            		 }else if(threshold >= 80 && threshold < 90) {
+            			 MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+monsters.MonsterManager.enemies.get(id).getName() +  "'s elemental resistance has been lowered! ");
+          		        pause(1500);
+          		        gameplay.Player.baseShockR -= curseAmount / 2;
+          	 
+          	        
+          		        shockWDuration = (curseAmount / 20) + 1;
+          		        shockWDmg -= curseAmount / 2;
+          		        shockWRound = backend.RPGRunner.round;
+          		        shockWActive = true;
+          		      
+          		        gameplay.Player.baseFireR -= curseAmount / 2;
+          		        fireWDuration = (curseAmount / 20) + 1;
+          		        fireWDmg -= curseAmount / 2;
+          		        fireWRound = backend.RPGRunner.round;
+          		        fireWActive = true;
+          		      
+          		        gameplay.Player.baseIceR -= curseAmount / 2;
+          		        iceWDuration = (curseAmount / 20) + 1;
+          		        iceWDmg -= curseAmount / 2;
+          		        iceWRound = backend.RPGRunner.round;
+          		        iceWActive = true;
+          		 }else {
+          			 MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\nNothing happens...");
+       		        pause(1500);
+          		 }
+            	 
+	            	 
+            
+        		 MainFightPanel.clearDisplay();
+            }else {
+            	curseActive = false;
+            	curseDuration = 0;
+            	curseAmount = 0;
+            }
+         }
     	if(strengthActive == true)
         {
             if(!(r <= strengthRound + strengthDuration))
