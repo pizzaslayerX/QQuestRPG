@@ -541,10 +541,13 @@ public class Monster
             		 MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+monsters.MonsterManager.enemies.get(id).getName() +  "'s defense has been lowered");
             		 MainFightPanel.append(MainFightPanel.enemyStatOutput,"!\n");
             		 Story.pause(1500);
-            		 fragileAmount += (int)(curseAmount / 3);
-            			 fragileDuration += (int)((Math.random() * 20)/8) + 1;
-            			 fragileRound = backend.RPGRunner.round;
-            			 fragileActive = true;
+            		 int dmg = (int)(curseAmount / 3);
+         	        dmg = (int)(monsters.MonsterManager.enemies.get(id).getDef() * (double)(dmg/100.0));
+         	        fragileAmount -= dmg;
+         	       monsters.MonsterManager.enemies.get(id).setDef(monsters.MonsterManager.enemies.get(id).getDef()-dmg);
+         	        fragileDuration += (int)((Math.random() * 20)/8) + 1;
+         	        fragileRound = backend.RPGRunner.round;
+         	        fragileActive = true;
             		 }else if(threshold >= 70 && threshold < 80) {
             			 MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+monsters.MonsterManager.enemies.get(id).getName() +  " is ");
             		       MainFightPanel.append(MainFightPanel.enemyStatOutput,"sluggish",Color.LIGHT_GRAY,20,true);
@@ -552,27 +555,27 @@ public class Monster
             		        pause(1200);
             		        slowDuration += 1+(int)(Math.random()*2.2);
             		        slowRound = backend.RPGRunner.round;
-            		        slowAmount -= curseAmount / 3;
+            		        int dmg = curseAmount / 3;
+            		        slowAmount -= dmg;
             		        slowActive = true;
-            		        monsters.MonsterManager.enemies.get(id).setEvade(monsters.MonsterManager.enemies.get(id).getEvade() - slowAmount);
+            		        monsters.MonsterManager.enemies.get(id).setEvade(monsters.MonsterManager.enemies.get(id).getEvade() - dmg);
             		 }else if(threshold >= 80 && threshold < 90) {
             			 MainFightPanel.append(MainFightPanel.enemyStatOutput,"\n\n"+monsters.MonsterManager.enemies.get(id).getName() +  "'s elemental resistance has been lowered! ");
           		        pause(1500);
-          		        gameplay.Player.baseShockR -= curseAmount / 2;
-          	 
+          		      monsters.MonsterManager.enemies.get(id).setShockR(monsters.MonsterManager.enemies.get(id).getShockR()-(curseAmount/2));
           	        
           		        shockWDuration = (curseAmount / 20) + 1;
           		        shockWDmg -= curseAmount / 2;
           		        shockWRound = backend.RPGRunner.round;
           		        shockWActive = true;
           		      
-          		        gameplay.Player.baseFireR -= curseAmount / 2;
+          		      monsters.MonsterManager.enemies.get(id).setFireR(monsters.MonsterManager.enemies.get(id).getFireR()-(curseAmount/2));
           		        fireWDuration = (curseAmount / 20) + 1;
           		        fireWDmg -= curseAmount / 2;
           		        fireWRound = backend.RPGRunner.round;
           		        fireWActive = true;
           		      
-          		        gameplay.Player.baseIceR -= curseAmount / 2;
+          		      monsters.MonsterManager.enemies.get(id).setIceR(monsters.MonsterManager.enemies.get(id).getIceR()-(curseAmount/2));
           		        iceWDuration = (curseAmount / 20) + 1;
           		        iceWDmg -= curseAmount / 2;
           		        iceWRound = backend.RPGRunner.round;
